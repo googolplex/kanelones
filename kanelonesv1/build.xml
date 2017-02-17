@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 
-<project name="kanelones" basedir="." default="deployWar">
+<project name="kanelonesv1" basedir="." default="deployWar">
 
-	<property name="project" value="kanelones" />
+	<property name="project" value="kanelonesv1" />
 	<property name="ox3" value="true" />
 	<property file="../openxava.properties"/>
 	
@@ -58,7 +58,7 @@
 	<target name="updateSchema">
 		<ant antfile="../OpenXava/build.xml" target="updateSchemaJPA">			
 			<property name="persistence.unit" value="junit"/>
-			<property name="schema.path" value="../OpenXava/lib/hsqldb.jar"/>
+			<property name="schema.path" value="../../tomcat/lib/postgresql-9.4.1212.jre7.jar"/>
 		</ant>
 	</target>	
 	
