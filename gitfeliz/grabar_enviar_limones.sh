@@ -10,6 +10,7 @@ cp *.sh kanelones/gitfeliz
 # cp  amazon2017llave/*.sh kanelones/amazon2017llave
 # cp  amazon2017llave/*.war kanelones/amazon2017llave ### no llevo el war porque no es necesario
 rm *.*~
+rm kanelones/*.*~
 cd kanelones
 git add -A
 git commit -a -m "comenzando el projecto"
