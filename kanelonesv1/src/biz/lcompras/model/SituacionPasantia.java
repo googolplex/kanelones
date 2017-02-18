@@ -23,7 +23,7 @@ public class SituacionPasantia extends SuperClaseFeliz {
 	
 	@Required
 	@Stereotype("DATE")
-	@Column(nullable=false,name="KAN_FECHARELATORIO")
+	@Column(nullable=false,name="KAN_FECHASITUACION")
 	@DefaultValueCalculator(CurrentDateCalculator.class)	
 	private Date fechaSituacion ;
 

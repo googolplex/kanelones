@@ -29,7 +29,7 @@ public class Ciudades extends SuperClaseFeliz {
 
 
 	public void setNombreCiudad(String nombreCiudad) {
-		this.nombreCiudad = nombreCiudad;
+		this.nombreCiudad = nombreCiudad.toUpperCase().trim();
 	}
 
 
