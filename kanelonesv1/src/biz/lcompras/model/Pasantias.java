@@ -9,12 +9,10 @@ import org.openxava.annotations.*;
 import org.openxava.calculators.*;
 import org.openxava.util.*;
 
-import biz.lcompras.calculadores.*;
-
 @Entity
 @Table(name="KAN_PASANTIAS"
  , uniqueConstraints={
-		 @UniqueConstraint(name="KAN_PASANTIA_DUPLICADA", columnNames={"KAN_YYYYMM","IDALUMNO_ID"})        
+		 @UniqueConstraint(name="KAN_PASANTIA_DUPLICADA", columnNames={"KAN_YYYY","IDALUMNO_ID"})        
  }
 )
 
@@ -24,8 +22,11 @@ public class Pasantias extends SuperClaseFeliz  {
 	@Required
 	@Range(min=0)	
 	@Column(length=4,nullable=false,name="KAN_YYYY",scale=0)
-	@DefaultValueCalculator(CeroFelizLong.class)	
+	@DefaultValueCalculator(CurrentYearCalculator.class)	
 	private Long yyyy ;
+	
+	@Embedded
+	private Anomes yyyymm ;
 	
 	@Required
 	@Stereotype("DATE")
@@ -81,12 +82,9 @@ public class Pasantias extends SuperClaseFeliz  {
 	@OneToMany(mappedBy="cabecero1",cascade=CascadeType.ALL)
 	private Collection<SituacionPasantia> situacion = new ArrayList<SituacionPasantia>() ;	
 	
-	@ListProperties("fechaRelatorio,comentario")
+	@ListProperties("fechaRelatorio,horasAcumuladas,comentario")
 	@OneToMany(mappedBy="cabecero2",cascade=CascadeType.ALL)
 	private Collection<RelatoriosAlumno> relatorio = new ArrayList<RelatoriosAlumno>() ;
-
-
-	
 
 
 	public Long getYyyy() {
@@ -259,12 +257,18 @@ public class Pasantias extends SuperClaseFeliz  {
 		this.relatorio = relatorio;
 	}
 
-
-
-
+	private void camposCalculados() {
+		this.yyyymm.obtenerAnoMes(this.getFechaInicio());
+	}
+	
+	@PrePersist
+	private void antesDeGrabar() {
+		this.camposCalculados();
+	}
 
 	@PreUpdate
 	private void ultimoPaso() {
+			this.camposCalculados();
 			Date mifechora = new java.util.Date() ;
 			super.setModificadoPor(Users.getCurrent()) ;
 			super.setFchUltMod(mifechora)  ;

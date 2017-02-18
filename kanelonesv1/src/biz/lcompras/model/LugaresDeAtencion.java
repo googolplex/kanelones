@@ -36,6 +36,6 @@ public class LugaresDeAtencion extends SuperClaseFeliz {
 			Date mifechora = new java.util.Date() ;
 			super.setModificadoPor(Users.getCurrent()) ;
 			super.setFchUltMod(mifechora)  ;
-	}				
+	}		
 	
 }
