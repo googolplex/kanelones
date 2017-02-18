@@ -6,6 +6,7 @@ import javax.persistence.*;
 
 import org.hibernate.validator.constraints.*;
 import org.openxava.annotations.*;
+import org.openxava.calculators.*;
 import org.openxava.util.*;
 
 import biz.lcompras.calculadores.*;
@@ -16,15 +17,22 @@ import biz.lcompras.calculadores.*;
 		 @UniqueConstraint(name="KAN_PASANTIA_DUPLICADA", columnNames={"KAN_YYYYMM","IDALUMNO_ID"})        
  }
 )
-//@View(members="YYYYMM,alumno.nombreApellido")
-@Tab(properties="yyyymm,alumno.nombreApellido")
+
+@Tab(properties="yyyy,alumno.nombreApellido,empresa.nombreEmpresa")
 public class Pasantias extends SuperClaseFeliz  {
 
 	@Required
 	@Range(min=0)	
-	@Column(length=6,nullable=false,name="KAN_YYYYMM",scale=0)
+	@Column(length=4,nullable=false,name="KAN_YYYY",scale=0)
 	@DefaultValueCalculator(CeroFelizLong.class)	
-	private Long yyyymm ;
+	private Long yyyy ;
+	
+	@Required
+	@Stereotype("DATE")
+	@Column(nullable=false,name="KAN_FECHAINICIO")
+	@DefaultValueCalculator(CurrentDateCalculator.class)	
+	private Date fechaInicio ;
+	
 	
 	@Required
 	@DescriptionsList(descriptionProperties="nombreArea")
@@ -79,16 +87,34 @@ public class Pasantias extends SuperClaseFeliz  {
 
 
 	
-	public Long getYyyymm() {
-		return yyyymm;
+
+
+	public Long getYyyy() {
+		return yyyy;
 	}
 
 
 
 
 
-	public void setYyyymm(Long yyyymm) {
-		this.yyyymm = yyyymm;
+	public void setYyyy(Long yyyy) {
+		this.yyyy = yyyy;
+	}
+
+
+
+
+
+	public Date getFechaInicio() {
+		return fechaInicio;
+	}
+
+
+
+
+
+	public void setFechaInicio(Date fechaInicio) {
+		this.fechaInicio = fechaInicio;
 	}
 
 
