@@ -21,6 +21,9 @@ public class SituacionPasantia extends SuperClaseFeliz {
 	@JoinColumn(name="IDPASANTIAS1_ID")
 	private Pasantias cabecero1 ;	
 	
+	@Embedded
+	private Anomes yyyymm ;
+	
 	@Required
 	@Stereotype("DATE")
 	@Column(nullable=false,name="KAN_FECHASITUACION")
@@ -69,11 +72,20 @@ public class SituacionPasantia extends SuperClaseFeliz {
 		this.estado = estado;
 	}
 
+	private void camposCalculados() {
+		this.yyyymm.obtenerAnoMes(this.getFechaSituacion());
+	}
+	
+	@PrePersist
+	private void antesDeGrabar() {
+		this.camposCalculados();
+	}
 
 
 	@PreUpdate
 	private void ultimoPaso() {
-			Date mifechora = new java.util.Date() ;
+		this.camposCalculados();
+		Date mifechora = new java.util.Date() ;
 			super.setModificadoPor(Users.getCurrent()) ;
 			super.setFchUltMod(mifechora)  ;
 	}		

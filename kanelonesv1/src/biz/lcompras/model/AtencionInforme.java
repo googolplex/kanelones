@@ -22,19 +22,34 @@ public class AtencionInforme extends SuperClaseFeliz {
 	@Range(min=0)	
 	@Column(length=4,nullable=false,name="KAN_YYYY",scale=0)
 	@DefaultValueCalculator(CurrentYearCalculator.class)	
-	private Long YYYY ;
+	private Long yyyy ;
 
+	@Column(length=60,nullable=true,name="KAN_NOMBRECORTO")
+	private String nombreCorto;
+	
 	@Required
 	@Stereotype("MEMO")
 	@Column(length=500,nullable=false,name="KAN_NARRATIVA")
 	private String attn;
 		
-	public Long getYYYY() {
-		return YYYY;
+
+	public String getNombreCorto() {
+		return nombreCorto;
 	}
 
-	public void setYYYY(Long yYYY) {
-		YYYY = yYYY;
+	public void setNombreCorto(String nombreCorto) {
+		this.nombreCorto = nombreCorto.toUpperCase().trim();
+	}
+
+
+	public Long getYyyy() {
+		return yyyy;
+	}
+
+
+
+	public void setYyyy(Long yyyy) {
+		this.yyyy = yyyy;
 	}
 
 

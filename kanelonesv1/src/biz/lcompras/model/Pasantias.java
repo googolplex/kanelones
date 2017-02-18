@@ -16,7 +16,7 @@ import org.openxava.util.*;
  }
 )
 
-@Tab(properties="yyyy,alumno.nombreApellido,empresa.nombreEmpresa")
+@Tab(properties="yyyy,alumno.nroCedula,alumno.nombreApellido,empresa.nombreEmpresa,fechaInicio")
 public class Pasantias extends SuperClaseFeliz  {
 
 	@Required
@@ -121,6 +121,22 @@ public class Pasantias extends SuperClaseFeliz  {
 
 	public AreaPasantia getArea() {
 		return area;
+	}
+
+
+
+
+
+	public Anomes getYyyymm() {
+		return yyyymm;
+	}
+
+
+
+
+
+	public void setYyyymm(Anomes yyyymm) {
+		this.yyyymm = yyyymm;
 	}
 
 

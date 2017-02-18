@@ -25,6 +25,9 @@ public class RelatoriosAlumno extends SuperClaseFeliz  {
 	@ManyToOne
 	@JoinColumn(name="IDPASANTIAS2_ID")
 	private Pasantias cabecero2 ;	
+
+	@Embedded
+	private Anomes yyyymm ;
 	
 	@Required
 	@Stereotype("DATE")
@@ -88,11 +91,20 @@ public class RelatoriosAlumno extends SuperClaseFeliz  {
 	}
 
 
+	private void camposCalculados() {
+		this.yyyymm.obtenerAnoMes(this.getFechaRelatorio());
+	}
+	
+	@PrePersist
+	private void antesDeGrabar() {
+		this.camposCalculados();
+	}
 
 
 
 	@PreUpdate
 	private void ultimoPaso() {
+			this.camposCalculados();
 			Date mifechora = new java.util.Date() ;
 			super.setModificadoPor(Users.getCurrent()) ;
 			super.setFchUltMod(mifechora)  ;

@@ -4,12 +4,10 @@ import java.util.*;
 
 import javax.persistence.*;
 
-import org.hibernate.validator.constraints.*;
 import org.openxava.annotations.*;
 import org.openxava.calculators.*;
 import org.openxava.util.*;
 
-import biz.lcompras.calculadores.*;
 
 
 @Entity
@@ -21,23 +19,19 @@ import biz.lcompras.calculadores.*;
 public class InformesMensuales extends SuperClaseFeliz {
 
 	@Required
-	@DescriptionsList(descriptionProperties="attn")
+	@DescriptionsList(descriptionProperties="yyyy,nombreCorto")
 	@ManyToOne(fetch=FetchType.LAZY,optional=false)	
 	@JoinColumn(name="IDATTN_ID", referencedColumnName="ID")	
 	private AtencionInforme attn ;
 	
 	@Required
-	@DescriptionsList(descriptionProperties="carreraNombre")
+	@DescriptionsList(descriptionProperties="carreraNombre, enfasis")
 	@ManyToOne(fetch=FetchType.LAZY,optional=false)	
 	@JoinColumn(name="IDCARRERA_ID", referencedColumnName="ID")
 	private Carreras carrera;	
 	
-	
-	@Required
-	@Range(min=0)	
-	@Column(length=6,nullable=false,name="KAN_YYYYMM",scale=0)
-	@DefaultValueCalculator(CeroFelizDouble.class)	
-	private Long YYYYMM ;
+	@Embedded
+	private Anomes yyyymm ;
 	
 	@Required
 	@Stereotype("DATE")
@@ -70,18 +64,6 @@ public class InformesMensuales extends SuperClaseFeliz {
 
 
 
-	public Long getYYYYMM() {
-		return YYYYMM;
-	}
-
-
-
-	public void setYYYYMM(Long yYYYMM) {
-		YYYYMM = yYYYMM;
-	}
-
-
-
 	public Date getFecha() {
 		return fecha;
 	}
@@ -96,6 +78,30 @@ public class InformesMensuales extends SuperClaseFeliz {
 
 	public String getNarrativa() {
 		return narrativa;
+	}
+
+
+
+	public AtencionInforme getAttn() {
+		return attn;
+	}
+
+
+
+	public void setAttn(AtencionInforme attn) {
+		this.attn = attn;
+	}
+
+
+
+	public Anomes getYyyymm() {
+		return yyyymm;
+	}
+
+
+
+	public void setYyyymm(Anomes yyyymm) {
+		this.yyyymm = yyyymm;
 	}
 
 
@@ -116,10 +122,20 @@ public class InformesMensuales extends SuperClaseFeliz {
 		this.orientador = orientador;
 	}
 
+	private void camposCalculados() {
+		this.yyyymm.obtenerAnoMes(this.getFecha());
+	}
+	
+	
+	@PrePersist
+	private void antesDeGrabar() {
+		this.camposCalculados();
+	}
 
 
 	@PreUpdate
 	private void ultimoPaso() {
+			this.camposCalculados();
 			Date mifechora = new java.util.Date() ;
 			super.setModificadoPor(Users.getCurrent()) ;
 			super.setFchUltMod(mifechora)  ;

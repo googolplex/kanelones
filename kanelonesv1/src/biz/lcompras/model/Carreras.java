@@ -18,11 +18,11 @@ import org.openxava.util.*;
 public class Carreras extends SuperClaseFeliz  {
 	
 	@Required
-	@Column(length=80,nullable=false,name="KAN_CARRERANOMBRE")
+	@Column(length=60,nullable=false,name="KAN_CARRERANOMBRE")
 	private String carreraNombre;
 	
 	@Required
-	@Column(length=80,nullable=false,name="KAN_ENFASIS")
+	@Column(length=60,nullable=false,name="KAN_ENFASIS")
 	private String enfasis;
 	
 	public String getCarreraNombre() {
