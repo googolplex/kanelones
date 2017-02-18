@@ -3,22 +3,25 @@ package biz.lcompras.model;
 import java.util.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
 
+import org.hibernate.annotations.*;
 import org.openxava.annotations.*;
 import org.openxava.calculators.*;
 import org.openxava.util.*;
+
+
+// version con UUID
+// CHau secuencias porque son dependientes del motor de la base de gatos
 
 @MappedSuperclass
 public class SuperClaseFeliz {
 	@Hidden
 	@Id
-	@SequenceGenerator(name="HIBERNATE_SEQUENCE",sequenceName="HIBERNATE_SEQUENCE",allocationSize=1)	
-	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="HIBERNATE_SEQUENCE")
+	@GeneratedValue(generator="system-uuid")
+	@GenericGenerator(name="system-uuid", strategy = "uuid")
 	
-	@Digits(integer=19, fraction = 0)
-	@Column(name="ID")
-	private Long id ;
+	@Column(name="ID",length=32)
+	private String id ;
 
 	@Version
 	@Column(name="VERSION")
@@ -43,12 +46,11 @@ public class SuperClaseFeliz {
 	@Column(length=50,name="MODIFICADOPOR")	
 	private String	modificadoPor = Users.getCurrent() ; // porque es un campo oculto
 
-
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

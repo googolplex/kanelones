@@ -18,7 +18,7 @@ public class Cargos extends SuperClaseFeliz {
 
 	
 	@Required
-	@Column(length=80,nullable=false,name="KAN_NOMBRECARGO")
+	@Column(length=40,nullable=false,name="KAN_NOMBRECARGO")
 	private String nombreCargo ;
 	
 	public String getNombreCargo() {

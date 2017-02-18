@@ -19,19 +19,8 @@ public class Empresas extends SuperClaseFeliz {
 @Required
 private String nombreEmpresa;
 
-@Column(length=80,nullable=false,name="KAN_DIRECCIONEMPRESA")
-@Required
-private String direccionEmpresa;
-
-@Stereotype("TELEPHONE")
-@Required
-@Column(length=80,nullable=false,name="KAN_TELEFONO")
-private String telefono;
-
-@Stereotype("EMAIL")
-@Required
-@Column(length=80,nullable=false,name="KAN_EMAILEMPRESA")
-private String email;
+@Embedded
+private Direcciones direccion ;
 
 public String getNombreEmpresa() {
 	return nombreEmpresa;
@@ -42,33 +31,17 @@ public void setNombreEmpresa(String nombreEmpresa) {
 	this.nombreEmpresa = nombreEmpresa.toUpperCase().trim();
 }
 
-public String getDireccionEmpresa() {
-	return direccionEmpresa;
-}
-
-public void setDireccionEmpresa(String direccionEmpresa) {
-	this.direccionEmpresa = direccionEmpresa.toUpperCase().trim();
-}
 
 
-public String getTelefono() {
-	return telefono;
+public Direcciones getDireccion() {
+	return direccion;
 }
 
 
-public void setTelefono(String telefono) {
-	this.telefono = telefono.toUpperCase().trim();
+public void setDireccion(Direcciones direccion) {
+	this.direccion = direccion;
 }
 
-
-public String getEmail() {
-	return email;
-}
-
-
-public void setEmail(String email) {
-	this.email = email.toUpperCase().trim();
-}
 
 @PreUpdate
 private void ultimoPaso() {

@@ -17,7 +17,7 @@ import org.openxava.util.*;
 public class EstadosPasantia extends SuperClaseFeliz {
 
 	@Required
-	@Column(length=80,nullable=false,name="KAN_NOMBREESTADO")
+	@Column(length=40,nullable=false,name="KAN_NOMBREESTADO")
 	private String nombreEstado;
 		
 	
@@ -26,7 +26,7 @@ public class EstadosPasantia extends SuperClaseFeliz {
 	}
 
 	public void setNombreEstado(String nombreEstado) {
-		this.nombreEstado = nombreEstado;
+		this.nombreEstado = nombreEstado.toUpperCase().trim();
 	}
 
 	@PreUpdate

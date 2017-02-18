@@ -19,6 +19,9 @@ public class Contactos extends SuperClaseFeliz {
 	@Required
 	@Column(length=80,nullable=false,name="KAN_NOMBRECONTACTO")	
 	private String nombreContacto ;	
+
+	@Embedded
+	private Direcciones direccion ;	
 	
 	public String getNombreContacto() {
 		return nombreContacto;
@@ -28,6 +31,15 @@ public class Contactos extends SuperClaseFeliz {
 		this.nombreContacto = nombreContacto.toUpperCase().trim();
 	}
 
+
+
+	public Direcciones getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(Direcciones direccion) {
+		this.direccion = direccion;
+	}
 
 	@PreUpdate
 	private void ultimoPaso() {

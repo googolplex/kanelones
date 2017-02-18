@@ -27,30 +27,8 @@ private String nroCedula ;
 @Column(length=80,nullable=false,name="KAN_NOMBREAPELLIDO")
 private String nombreApellido ;
 
-@Required
-@Stereotype("TELEPHONE")
-@Column(length=40,nullable=false,name="KAN_NROCELULAR1")
-private String nroCelular1;
-
-@Required
-@Stereotype("TELEPHONE")
-@Column(length=40,nullable=false,name="KAN_NROCELULAR2")
-private String nroCelular2;
-
-
-@Required
-@Column(length=40,nullable=false,name="KAN_LINEABAJA")
-private String lineabaja ;
-
-
-@Required
-@Column(length=80,nullable=false,name="KAN_EMAIL")
-@Stereotype("EMAIL")
-private String email ;
-
-@Required 
-@Column(length=80,nullable=true,name="KAN_DIRECCION")
-private String direccion; 
+@Embedded
+private Direcciones direccion;
 
 @Required
 @Column(nullable=true	,name="KAN_YYYY")
@@ -81,65 +59,13 @@ public void setNombreApellido(String nombreApellido) {
 
 
 
-
-
-
-public String getNroCelular1() {
-	return nroCelular1;
-}
-
-
-
-public void setNroCelular1(String nroCelular1) {
-	this.nroCelular1 = nroCelular1.toUpperCase().trim();
-}
-
-
-
-public String getNroCelular2() {
-	return nroCelular2;
-}
-
-
-
-public void setNroCelular2(String nroCelular2) {
-	this.nroCelular2 = nroCelular2.toUpperCase().trim();
-}
-
-
-
-public String getLineabaja() {
-	return lineabaja;
-}
-
-
-
-public void setLineabaja(String lineabaja) {
-	this.lineabaja = lineabaja.toUpperCase().trim();
-}
-
-
-
-public String getEmail() {
-	return email;
-}
-
-
-
-public void setEmail(String email) {
-	this.email = email.toUpperCase().trim();
-}
-
-
-
-
-	public String getDireccion() {
+	public Direcciones getDireccion() {
 	return direccion;
 }
 
 
 
-public void setDireccion(String direccion) {
+public void setDireccion(Direcciones direccion) {
 	this.direccion = direccion;
 }
 
