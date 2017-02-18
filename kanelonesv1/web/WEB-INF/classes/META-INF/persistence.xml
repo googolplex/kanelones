@@ -27,7 +27,7 @@
              <property name="hibernate.connection.url" 
              value="jdbc:postgresql://cafe.lcompras.biz:5432/kanelonesdb"/>
              <property name="hibernate.connection.username" value="kanelones"/>
-             <property name="hibernate.connection.password" value="googolplex123abc"/>
+             <property name="hibernate.connection.password" value="desarrollo123abc"/>
              <property name="hibernate.jdbc.use_get_generated_keys" value="true" />
 			 <property name="hibernate.temp.use_jdbc_metadata_defaults" value="false" />             
          </properties>
