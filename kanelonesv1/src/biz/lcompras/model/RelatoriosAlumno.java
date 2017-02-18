@@ -4,28 +4,23 @@ import java.util.*;
 
 import javax.persistence.*;
 
-import org.hibernate.validator.constraints.*;
 import org.openxava.annotations.*;
 import org.openxava.calculators.*;
 import org.openxava.util.*;
 
-import biz.lcompras.calculadores.*;
 
 @Entity
 @Table(name="KAN_RELATORIOALUMNO"
  , uniqueConstraints={
-		 @UniqueConstraint(name="KAN_YYYYMM_DUPLICADO", columnNames={"KAN_YYYYMM","KAN_IDALUMNO_ID"})        
+		 @UniqueConstraint(name="KAN_RELATORIO_DUPLICADO", columnNames={"IDPASANTIAS_ID","KAN_FECHARELATORIO","IDALUMNO_ID"})        
  }
 )
 
 public class RelatoriosAlumno extends SuperClaseFeliz  {
 
-
-	@Required
-	@Range(min=0)	
-	@Column(length=6,nullable=false,name="KAN_YYYYMM",scale=0)
-	@DefaultValueCalculator(CeroFelizDouble.class)	
-	private Long YYYYMM ;
+	@ManyToOne
+	@JoinColumn(name="IDPASANTIAS_ID")
+	private Pasantias cabecero ;	
 	
 	@Required
 	@Stereotype("DATE")
@@ -34,29 +29,33 @@ public class RelatoriosAlumno extends SuperClaseFeliz  {
 	private Date fechaRelatorio ;
 	
 	@Required
-	@DescriptionsList(descriptionProperties="tivacod,tivanombre")
+	@DescriptionsList(descriptionProperties="nombreApellido")
 	@ManyToOne(fetch=FetchType.LAZY,optional=false)	
 	@JoinColumn(name="IDALUMNO_ID", referencedColumnName="ID")
 	private Alumnos alumno ;
 
+	@Stereotype("MEMO")
+	@Column(length=500,nullable=false,name="KAN_COMENTARIO")
+	private String comentario;
 	
-	@Required	
-	@DescriptionsList(descriptionProperties="tivacod,tivanombre")
-	@ManyToOne(fetch=FetchType.LAZY,optional=false)	
-	@JoinColumn(name="IDPASANTIA_ID", referencedColumnName="ID")
-	private Pasantias pasantia;
 
-	
-	@Required
-	@DescriptionsList(descriptionProperties="tivacod,tivanombre")
-	@ManyToOne(fetch=FetchType.LAZY,optional=false)	
-	@JoinColumn(name="IDPASANTIA_ID", referencedColumnName="ID")
-	private String relatorio;
-	
-	
+
+	public Pasantias getCabecero() {
+		return cabecero;
+	}
+
+
+
+	public void setCabecero(Pasantias cabecero) {
+		this.cabecero = cabecero;
+	}
+
+
+
 	public Date getFechaRelatorio() {
 		return fechaRelatorio;
 	}
+
 
 
 	public void setFechaRelatorio(Date fechaRelatorio) {
@@ -64,9 +63,11 @@ public class RelatoriosAlumno extends SuperClaseFeliz  {
 	}
 
 
+
 	public Alumnos getAlumno() {
 		return alumno;
 	}
+
 
 
 	public void setAlumno(Alumnos alumno) {
@@ -74,26 +75,17 @@ public class RelatoriosAlumno extends SuperClaseFeliz  {
 	}
 
 
-	public Pasantias getPasantia() {
-		return pasantia;
-	}
 
-
-	public void setPasantia(Pasantias pasantia) {
-		this.pasantia = pasantia;
+	public String getComentario() {
+		return comentario;
 	}
 
 
 
-	public String getRelatorio() {
-		return relatorio;
+	public void setComentario(String comentario) {
+		this.comentario = comentario;
 	}
 
-
-
-	public void setRelatorio(String relatorio) {
-		this.relatorio = relatorio.toUpperCase().trim();
-	}
 
 
 	@PreUpdate

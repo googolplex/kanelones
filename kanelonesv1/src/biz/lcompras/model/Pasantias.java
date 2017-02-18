@@ -26,47 +26,65 @@ public class Pasantias extends SuperClaseFeliz  {
 	private Long YYYYMM ;
 	
 	@Required
-	@DescriptionsList(descriptionProperties="tivacod,tivanombre")
+	@DescriptionsList(descriptionProperties="nombreArea")
 	@ManyToOne(fetch=FetchType.LAZY,optional=false)	
 	@JoinColumn(name="IDAREA_ID", referencedColumnName="ID")
 	private AreaPasantia area;
 	
+	@Required
+	@DescriptionsList(descriptionProperties="carreraNombre")
+	@ManyToOne(fetch=FetchType.LAZY,optional=false)	
+	@JoinColumn(name="IDCARRERA_ID", referencedColumnName="ID")
+	private Carreras carrera;	
+	
 	
 	@Required
-	@DescriptionsList(descriptionProperties="tivacod,tivanombre")
+	@DescriptionsList(descriptionProperties="nombreApellido")
 	@ManyToOne(fetch=FetchType.LAZY,optional=false)	
 	@JoinColumn(name="IDALUMNO_ID", referencedColumnName="ID")	
 	private Alumnos alumno ;
 
 	@Required
-	@DescriptionsList(descriptionProperties="tivacod,tivanombre")
+	@DescriptionsList(descriptionProperties="nombreEmpresa")
 	@ManyToOne(fetch=FetchType.LAZY,optional=false)	
 	@JoinColumn(name="IDEMPRESA_ID", referencedColumnName="ID")	
 	private Empresas empresa ;
 
 	@Required
-	@DescriptionsList(descriptionProperties="tivacod,tivanombre")
+	@DescriptionsList(descriptionProperties="directivoNombre")
 	@ManyToOne(fetch=FetchType.LAZY,optional=false)	
 	@JoinColumn(name="IDDIRECTIVO_ID", referencedColumnName="ID")	
 	private Directivos directivo;
 	
 	@Required
-	@DescriptionsList(descriptionProperties="tivacod,tivanombre")
+	@DescriptionsList(descriptionProperties="nombreContacto")
 	@ManyToOne(fetch=FetchType.LAZY,optional=false)	
 	@JoinColumn(name="IDCONTACTO_ID", referencedColumnName="ID")	
 	private Contactos contacto ;
 
 	@Required
-	@DescriptionsList(descriptionProperties="tivacod,tivanombre")
+	@DescriptionsList(descriptionProperties="nombreOrientador")
 	@ManyToOne(fetch=FetchType.LAZY,optional=false)	
 	@JoinColumn(name="IDORIENTADOR_ID", referencedColumnName="ID")	
 	private Orientadores orientador;
 
+	@ListProperties("estado.nombreEstado,fechaSituacion")
+	@OneToMany(mappedBy="cabecero",cascade=CascadeType.ALL)
+	private Collection<SituacionPasantia> situacion = new ArrayList<SituacionPasantia>() ;	
+	
+	@ListProperties("fechaRelatorio")
+	@OneToMany(mappedBy="cabecero",cascade=CascadeType.ALL)
+	private Collection<RelatoriosAlumno> relatorio = new ArrayList<RelatoriosAlumno>() ;
 	
 	
+
+
+
 	public Long getYYYYMM() {
 		return YYYYMM;
 	}
+
+
 
 
 
@@ -76,9 +94,13 @@ public class Pasantias extends SuperClaseFeliz  {
 
 
 
+
+
 	public AreaPasantia getArea() {
 		return area;
 	}
+
+
 
 
 
@@ -88,9 +110,27 @@ public class Pasantias extends SuperClaseFeliz  {
 
 
 
+	public Carreras getCarrera() {
+		return carrera;
+	}
+
+
+
+
+
+	public void setCarrera(Carreras carrera) {
+		this.carrera = carrera;
+	}
+
+
+
+
+
 	public Alumnos getAlumno() {
 		return alumno;
 	}
+
+
 
 
 
@@ -100,9 +140,13 @@ public class Pasantias extends SuperClaseFeliz  {
 
 
 
+
+
 	public Empresas getEmpresa() {
 		return empresa;
 	}
+
+
 
 
 
@@ -112,9 +156,13 @@ public class Pasantias extends SuperClaseFeliz  {
 
 
 
+
+
 	public Directivos getDirectivo() {
 		return directivo;
 	}
+
+
 
 
 
@@ -124,9 +172,13 @@ public class Pasantias extends SuperClaseFeliz  {
 
 
 
+
+
 	public Contactos getContacto() {
 		return contacto;
 	}
+
+
 
 
 
@@ -136,15 +188,53 @@ public class Pasantias extends SuperClaseFeliz  {
 
 
 
+
+
 	public Orientadores getOrientador() {
 		return orientador;
 	}
 
 
 
+
+
 	public void setOrientador(Orientadores orientador) {
 		this.orientador = orientador;
 	}
+
+
+
+
+
+	public Collection<SituacionPasantia> getSituacion() {
+		return situacion;
+	}
+
+
+
+
+
+	public void setSituacion(Collection<SituacionPasantia> situacion) {
+		this.situacion = situacion;
+	}
+
+
+
+
+
+	public Collection<RelatoriosAlumno> getRelatorio() {
+		return relatorio;
+	}
+
+
+
+
+
+	public void setRelatorio(Collection<RelatoriosAlumno> relatorio) {
+		this.relatorio = relatorio;
+	}
+
+
 
 
 

@@ -15,5 +15,5 @@ rm *.*~
 rm kanelones/*.*~
 cd kanelones
 git add -A
-git commit -a -m "comenzando el projecto"
+git commit -a -m "creando la model"
 git push -u origin master
