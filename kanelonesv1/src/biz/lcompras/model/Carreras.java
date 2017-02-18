@@ -14,6 +14,7 @@ import org.openxava.util.*;
  }
 )
 
+@View(members="carreraNombre,enfasis")
 public class Carreras extends SuperClaseFeliz  {
 	
 	@Required

@@ -16,14 +16,15 @@ import biz.lcompras.calculadores.*;
 		 @UniqueConstraint(name="KAN_PASANTIA_DUPLICADA", columnNames={"KAN_YYYYMM","IDALUMNO_ID"})        
  }
 )
-
+//@View(members="YYYYMM,alumno.nombreApellido")
+@Tab(properties="yyyymm,alumno.nombreApellido")
 public class Pasantias extends SuperClaseFeliz  {
 
 	@Required
 	@Range(min=0)	
 	@Column(length=6,nullable=false,name="KAN_YYYYMM",scale=0)
-	@DefaultValueCalculator(CeroFelizDouble.class)	
-	private Long YYYYMM ;
+	@DefaultValueCalculator(CeroFelizLong.class)	
+	private Long yyyymm ;
 	
 	@Required
 	@DescriptionsList(descriptionProperties="nombreArea")
@@ -32,7 +33,7 @@ public class Pasantias extends SuperClaseFeliz  {
 	private AreaPasantia area;
 	
 	@Required
-	@DescriptionsList(descriptionProperties="carreraNombre")
+	@DescriptionsList(descriptionProperties="carreraNombre,enfasis")
 	@ManyToOne(fetch=FetchType.LAZY,optional=false)	
 	@JoinColumn(name="IDCARRERA_ID", referencedColumnName="ID")
 	private Carreras carrera;	
@@ -69,27 +70,25 @@ public class Pasantias extends SuperClaseFeliz  {
 	private Orientadores orientador;
 
 	@ListProperties("estado.nombreEstado,fechaSituacion")
-	@OneToMany(mappedBy="cabecero",cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="cabecero1",cascade=CascadeType.ALL)
 	private Collection<SituacionPasantia> situacion = new ArrayList<SituacionPasantia>() ;	
 	
-	@ListProperties("fechaRelatorio")
-	@OneToMany(mappedBy="cabecero",cascade=CascadeType.ALL)
+	@ListProperties("fechaRelatorio,comentario")
+	@OneToMany(mappedBy="cabecero2",cascade=CascadeType.ALL)
 	private Collection<RelatoriosAlumno> relatorio = new ArrayList<RelatoriosAlumno>() ;
+
+
 	
-	
-
-
-
-	public Long getYYYYMM() {
-		return YYYYMM;
+	public Long getYyyymm() {
+		return yyyymm;
 	}
 
 
 
 
 
-	public void setYYYYMM(Long yYYYMM) {
-		YYYYMM = yYYYMM;
+	public void setYyyymm(Long yyyymm) {
+		this.yyyymm = yyyymm;
 	}
 
 

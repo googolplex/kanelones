@@ -12,15 +12,15 @@ import org.openxava.util.*;
 @Entity
 @Table(name="KAN_RELATORIOALUMNO"
  , uniqueConstraints={
-		 @UniqueConstraint(name="KAN_RELATORIO_DUPLICADO", columnNames={"IDPASANTIAS_ID","KAN_FECHARELATORIO","IDALUMNO_ID"})        
+		 @UniqueConstraint(name="KAN_RELATORIO_DUPLICADO", columnNames={"IDPASANTIAS2_ID","KAN_FECHARELATORIO"})        
  }
 )
-
+@Tab(properties="cabecero2.alumno.nombreApellido,fechaRelatorio")
 public class RelatoriosAlumno extends SuperClaseFeliz  {
 
 	@ManyToOne
-	@JoinColumn(name="IDPASANTIAS_ID")
-	private Pasantias cabecero ;	
+	@JoinColumn(name="IDPASANTIAS2_ID")
+	private Pasantias cabecero2 ;	
 	
 	@Required
 	@Stereotype("DATE")
@@ -28,27 +28,27 @@ public class RelatoriosAlumno extends SuperClaseFeliz  {
 	@DefaultValueCalculator(CurrentDateCalculator.class)	
 	private Date fechaRelatorio ;
 	
-	@Required
-	@DescriptionsList(descriptionProperties="nombreApellido")
-	@ManyToOne(fetch=FetchType.LAZY,optional=false)	
-	@JoinColumn(name="IDALUMNO_ID", referencedColumnName="ID")
-	private Alumnos alumno ;
-
 	@Stereotype("MEMO")
 	@Column(length=500,nullable=false,name="KAN_COMENTARIO")
 	private String comentario;
 	
 
 
-	public Pasantias getCabecero() {
-		return cabecero;
+
+
+	public Pasantias getCabecero2() {
+		return cabecero2;
 	}
 
 
 
-	public void setCabecero(Pasantias cabecero) {
-		this.cabecero = cabecero;
+
+
+	public void setCabecero2(Pasantias cabecero2) {
+		this.cabecero2 = cabecero2;
 	}
+
+
 
 
 
@@ -58,21 +58,12 @@ public class RelatoriosAlumno extends SuperClaseFeliz  {
 
 
 
+
+
 	public void setFechaRelatorio(Date fechaRelatorio) {
 		this.fechaRelatorio = fechaRelatorio;
 	}
 
-
-
-	public Alumnos getAlumno() {
-		return alumno;
-	}
-
-
-
-	public void setAlumno(Alumnos alumno) {
-		this.alumno = alumno;
-	}
 
 
 
@@ -82,9 +73,13 @@ public class RelatoriosAlumno extends SuperClaseFeliz  {
 
 
 
+
+
 	public void setComentario(String comentario) {
 		this.comentario = comentario;
 	}
+
+
 
 
 

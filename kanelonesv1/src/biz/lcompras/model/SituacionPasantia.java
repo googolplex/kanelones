@@ -11,15 +11,15 @@ import org.openxava.util.*;
 @Entity
 @Table(name="KAN_SITUACIONPASANTIA"
  , uniqueConstraints={
-		 @UniqueConstraint(name="KAN_SITUACION_DUPLICADA", columnNames={"KAN_FECHARELATORIO","IDESTADO_ID"})        
+		 @UniqueConstraint(name="KAN_SITUACION_DUPLICADA", columnNames={"KAN_FECHASITUACION","IDESTADO_ID"})        
  }
 )
 
 public class SituacionPasantia extends SuperClaseFeliz {
 
 	@ManyToOne
-	@JoinColumn(name="IDPASANTIAS_ID")
-	private Pasantias cabecero ;	
+	@JoinColumn(name="IDPASANTIAS1_ID")
+	private Pasantias cabecero1 ;	
 	
 	@Required
 	@Stereotype("DATE")
@@ -28,33 +28,33 @@ public class SituacionPasantia extends SuperClaseFeliz {
 	private Date fechaSituacion ;
 
 	@Required
-	@DescriptionsList(descriptionProperties="tivacod,tivanombre")
+	@DescriptionsList(descriptionProperties="nombreEstado")
 	@ManyToOne(fetch=FetchType.LAZY,optional=false)	
 	@JoinColumn(name="IDESTADO_ID", referencedColumnName="ID")
 	private EstadosPasantia estado ; 
 	
 
-	
-	public Pasantias getCabecero() {
-		return cabecero;
+
+	public Pasantias getCabecero1() {
+		return cabecero1;
 	}
 
 
 
-	public void setCabecero(Pasantias cabecero) {
-		this.cabecero = cabecero;
+	public void setCabecero1(Pasantias cabecero1) {
+		this.cabecero1 = cabecero1;
 	}
 
 
 
-	public Date getFechaRelatorio() {
+	public Date getFechaSituacion() {
 		return fechaSituacion;
 	}
 
 
 
-	public void setFechaRelatorio(Date fechaRelatorio) {
-		this.fechaSituacion = fechaRelatorio;
+	public void setFechaSituacion(Date fechaSituacion) {
+		this.fechaSituacion = fechaSituacion;
 	}
 
 
