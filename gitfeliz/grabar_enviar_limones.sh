@@ -19,5 +19,5 @@ rm *.*~
 rm kanelones/*.*~
 cd kanelones
 git add -A
-git commit -a -m "comenzando el projecto"
+git commit -a -m "vamos por la clase  informe cuantitativo"
 git push -u origin master
