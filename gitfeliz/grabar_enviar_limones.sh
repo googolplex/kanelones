@@ -22,5 +22,5 @@ rm *.*~
 rm kanelones/*.*~
 cd kanelones
 git add -A
-git commit -a -m "ya esta la model para el informe cuantitativo, falta probar"
+git commit -a -m "vamos por la prueba de escritorio"
 git push -u origin master
