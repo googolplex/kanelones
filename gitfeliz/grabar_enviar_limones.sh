@@ -22,5 +22,5 @@ rm *.*~
 rm kanelones/*.*~
 cd kanelones
 git add -A
-git commit -a -m "vamos por la prueba de escritorio"
+git commit -a -m "lo pongo en produccion - alfa"
 git push -u origin master

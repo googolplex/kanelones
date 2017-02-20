@@ -25,7 +25,7 @@
 		<!-- <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/> -->			   			              
              <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
              <property name="hibernate.connection.url" 
-             value="jdbc:postgresql://cafe.lcompras.biz:5432/kanelonesdb"/>
+             value="jdbc:postgresql://52.207.31.88:5432/kanelonesdb"/>
              <property name="hibernate.connection.username" value="kanelones"/>
              <property name="hibernate.connection.password" value="desarrollo123abc"/>
              <property name="hibernate.jdbc.use_get_generated_keys" value="true" />

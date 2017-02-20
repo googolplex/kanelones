@@ -52,7 +52,7 @@
     	name="jdbc/kanelonesv1" 
     	password="desarrollo123abc" 
     	type="javax.sql.DataSource" 
-    	url="jdbc:postgresql://cafe.lcompras.biz:5432/kanelonesdb" 
+    	url="jdbc:postgresql://52.207.31.88:5432/kanelonesdb" 
     	username="kanelones" 
     	connectionProperties="hibernate.temp.use_jdbc_metadata_defaults=false;hibernate.jdbc.use_get_generated_keys=true"    	
     	validationQuery="select now()"/>    
