@@ -27,7 +27,7 @@ public class AtencionAlEstudiante extends SuperClaseFeliz {
 	@DescriptionsList(descriptionProperties="nombreApellido")
 	@ManyToOne(fetch=FetchType.LAZY,optional=false)	
 	@JoinColumn(name="IDALUMNO_ID", referencedColumnName="ID")	
-	private Alumnos alumno ;
+	private Alumno alumno ;
 
 	
 	@Required
@@ -50,13 +50,13 @@ public class AtencionAlEstudiante extends SuperClaseFeliz {
 		this.fechaAtencion = fechaAtencion;
 	}
 
-	public Alumnos getAlumno() {
+	public Alumno getAlumno() {
 		return alumno;
 	}
 
 
 
-	public void setAlumno(Alumnos alumno) {
+	public void setAlumno(Alumno alumno) {
 		this.alumno = alumno;
 	}
 

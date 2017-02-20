@@ -52,7 +52,7 @@ public class Pasantias extends SuperClaseFeliz  {
 	@DescriptionsList(descriptionProperties="nombreApellido")
 	@ManyToOne(fetch=FetchType.LAZY,optional=false)	
 	@JoinColumn(name="IDALUMNO_ID", referencedColumnName="ID")	
-	private Alumnos alumno ;
+	private Alumno alumno ;
 
 	@Required
 	@DescriptionsList(descriptionProperties="nombreEmpresa")
@@ -165,7 +165,7 @@ public class Pasantias extends SuperClaseFeliz  {
 
 
 
-	public Alumnos getAlumno() {
+	public Alumno getAlumno() {
 		return alumno;
 	}
 
@@ -173,7 +173,7 @@ public class Pasantias extends SuperClaseFeliz  {
 
 
 
-	public void setAlumno(Alumnos alumno) {
+	public void setAlumno(Alumno alumno) {
 		this.alumno = alumno;
 	}
 
