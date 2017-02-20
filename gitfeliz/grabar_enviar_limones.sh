@@ -17,7 +17,7 @@ cp *.sh kanelones/gitfeliz
 cp -r openshiftfeliz kanelones/
 cp -r jasperfeliz kanelones/
 cp  amazon2017llave/*.sh kanelones/amazon2017llave/
-cp  amazon2017llave/*.war kanelones/amazon2017llave/ ### no llevo el war porque no es necesario
+# cp  amazon2017llave/*.war kanelones/amazon2017llave/ ### no llevo el war porque no es necesario
 rm *.*~
 rm kanelones/*.*~
 cd kanelones
