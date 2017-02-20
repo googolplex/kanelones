@@ -5,7 +5,7 @@
 # cp -r /home/xoldfusion/Descargas/openxava-5.6_kanelones/workspace/kanelonesv1  kanelones
 
 cp /home/xoldfusion/Descargas/openxava-5.6_kanelones/tomcat/conf/server.xml /home/xoldfusion/Descargas/kanelones2017/tomcatfeliz
-cp /home/xoldfusion/Descargas/openxava-5.6_kanelones/tomcat/conf/config.xml /home/xoldfusion/Descargas/kanelones2017/tomcatfeliz
+cp /home/xoldfusion/Descargas/openxava-5.6_kanelones/tomcat/conf/context.xml /home/xoldfusion/Descargas/kanelones2017/tomcatfeliz
 cp /home/xoldfusion/Descargas/openxava-5.6_kanelones/tomcat/conf/web.xml /home/xoldfusion/Descargas/kanelones2017/tomcatfeliz
 cp tomcatfeliz/server.xml  kanelones/tomcatfeliz/
 cp tomcatfeliz/context.xml  kanelones/tomcatfeliz/
