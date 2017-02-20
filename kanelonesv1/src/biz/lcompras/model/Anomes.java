@@ -28,8 +28,8 @@ public class Anomes {
 		
 		Calendar cal = Calendar.getInstance();
 	    cal.setTime(mifecha);
-	    int anofeliz = cal.get(Calendar.YEAR);
-	    int mesfeliz = cal.get(Calendar.MONTH);
+	    int anofeliz = cal.get(Calendar.YEAR); 
+	    int mesfeliz = cal.get(Calendar.MONTH) + 1;
 	    
 	    this.yyyymm = (long) (anofeliz * 100 + mesfeliz) ;
 		return yyyymm ;

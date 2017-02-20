@@ -14,7 +14,8 @@ import org.openxava.util.*;
  }
 )
 
-@View(members="carreraNombre,enfasis")
+@View(members="carreraNombre;enfasis")
+@Tab(properties="carreraNombre,enfasis")
 public class Carreras extends SuperClaseFeliz  {
 	
 	@Required

@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import org.openxava.annotations.*;
+import org.openxava.calculators.*;
 import org.openxava.util.*;
 
 
@@ -32,6 +33,7 @@ private Direcciones direccion;
 
 @Required
 @Column(nullable=true	,name="KAN_YYYY")
+@DefaultValueCalculator(CurrentYearCalculator.class)
 private Long YYYY;
 
 	

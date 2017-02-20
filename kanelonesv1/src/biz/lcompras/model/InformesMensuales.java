@@ -13,9 +13,10 @@ import org.openxava.util.*;
 @Entity
 @Table(name="KAN_INFORMESMENSUALES"
  , uniqueConstraints={
-     @UniqueConstraint(name="KAN_YYYYMM_DUPLICADO", columnNames={"KAN_YYYYMM"})        
+     @UniqueConstraint(name="KAN_INFORME_DUPLICADO", columnNames={"IDCARRERA_ID","KAN_YYYYMM","IDORIENTADOR_ID"})        
  }
 )
+@Tab(properties="yyyymm.yyyymm,fecha,carrera.carreraNombre,orientador.nombreOrientador")
 public class InformesMensuales extends SuperClaseFeliz {
 
 	@Required
@@ -25,7 +26,7 @@ public class InformesMensuales extends SuperClaseFeliz {
 	private AtencionInforme attn ;
 	
 	@Required
-	@DescriptionsList(descriptionProperties="carreraNombre, enfasis")
+	@DescriptionsList(descriptionProperties="carreraNombre,enfasis")
 	@ManyToOne(fetch=FetchType.LAZY,optional=false)	
 	@JoinColumn(name="IDCARRERA_ID", referencedColumnName="ID")
 	private Carreras carrera;	
@@ -51,20 +52,20 @@ public class InformesMensuales extends SuperClaseFeliz {
 	@JoinColumn(name="IDORIENTADOR_ID", referencedColumnName="ID")	
 	private Orientadores orientador;
 
-	@ListProperties("actividad.nombreActividad,tarea")
+	@ListProperties("cabecero.orientador.nombreOrientador,actividad.nombreActividad,tarea")
 	@OneToMany(mappedBy="cabecero",cascade=CascadeType.ALL)
+	private Collection<InformeCuantitativo> quantitativo = new ArrayList<InformeCuantitativo>() ;	
 	
-	
+	public Date getFecha() {
+		return fecha;
+	}
+
 	public Carreras getCarrera() {
 		return carrera;
 	}
 
 	public void setCarrera(Carreras carrera) {
 		this.carrera = carrera;
-	}
-
-	public Date getFecha() {
-		return fecha;
 	}
 
 	public void setFecha(Date fecha) {
@@ -92,7 +93,7 @@ public class InformesMensuales extends SuperClaseFeliz {
 	}
 
 	public void setNarrativa(String narrativa) {
-		this.narrativa = narrativa;
+		this.narrativa = narrativa.toUpperCase().trim();
 	}
 
 
@@ -109,6 +110,15 @@ public class InformesMensuales extends SuperClaseFeliz {
 	}
 	
 	
+
+	public Collection<InformeCuantitativo> getQuantitativo() {
+		return quantitativo;
+	}
+
+	public void setQuantitativo(Collection<InformeCuantitativo> quantitativo) {
+		this.quantitativo = quantitativo;
+	}
+
 	@PrePersist
 	private void antesDeGrabar() {
 		this.camposCalculados();

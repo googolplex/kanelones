@@ -10,7 +10,7 @@ import org.openxava.util.*;
 @Entity
 @Table(name="KAN_ORIENTADORES"
  , uniqueConstraints={
-        @UniqueConstraint(name="KAN_NOMBRE_DUPLICADO", columnNames={"KAN_NOMBREORIENTADOR"})        
+        @UniqueConstraint(name="ORI_NOMBRE_DUPLICADO", columnNames={"KAN_NOMBREORIENTADOR"})        
  }
 )
 

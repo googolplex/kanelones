@@ -6,7 +6,6 @@ import javax.persistence.*;
 
 import org.hibernate.validator.constraints.*;
 import org.openxava.annotations.*;
-import org.openxava.calculators.*;
 import org.openxava.util.*;
 
 import biz.lcompras.calculadores.*;
@@ -14,15 +13,15 @@ import biz.lcompras.calculadores.*;
 @Entity
 @Table(name="KAN_INFORMECUANTITATIVO"
  , uniqueConstraints={
-		 @UniqueConstraint(name="KAN_INFORME_DUPLICADA", columnNames={"KAN_CARRERANOMBRE","KAN_ENFASIS"})        
+		 @UniqueConstraint(name="KAN_INFORME_DUPLICADA", columnNames={"IDINFORMEMENSUAL_ID","IDACTIVIDAD_ID"})        
  }
 )
-
+@Tab(properties="cabecero.orientador.nombreOrientador,actividad.nombreActividad,tarea")
 public class InformeCuantitativo extends SuperClaseFeliz {
 	
 	@ManyToOne
 	@JoinColumn(name="IDINFORMEMENSUAL_ID")
-	private Pasantias cabecero ;
+	private InformesMensuales cabecero ;
 	
 	@Required
 	@DescriptionsList(descriptionProperties="nombreActividad")
@@ -33,9 +32,14 @@ public class InformeCuantitativo extends SuperClaseFeliz {
 	@Required
 	@Column(length=60,nullable=false,name="KAN_TAREA")
 	private String tarea;
-
+	
 	@Required
+	@Column(length=80,nullable=false,name="KAN_ORGANIZADOR")
+	private String organizador;	
+
+	@Range(min=0)
 	@DefaultValueCalculator(CeroFelizLong.class)
+	@Column(length=4,name="CANTIDAD",nullable=false)
 	private Long cantidad;
 
 	@Required
@@ -44,65 +48,43 @@ public class InformeCuantitativo extends SuperClaseFeliz {
 	@JoinColumn(name="IDLUGAR_ID", referencedColumnName="ID")
 	private LugaresDeAtencion lugar;
 	
-	@Required
-	@DescriptionsList(descriptionProperties="nombreOrientador")
-	@ManyToOne(fetch=FetchType.LAZY,optional=false)	
-	@JoinColumn(name="IDORIENTADOR_ID", referencedColumnName="ID")	
-	private Orientadores organizador;
-
-	// porque se puede reportar actividades fuera de fecha
-	@Embedded
-	private Anomes yyyymm ;	
-	
-	// porque se puede reportar actividades fuera de fecha
-	@Required
-	@Stereotype("DATE")
-	@Column(nullable=false,name="KAN_FECHA")
-	@DefaultValueCalculator(CurrentDateCalculator.class)	
-	private Date fecha ;
-	
-
-
-	@Required
 	@Range(min=0)
 	@DefaultValueCalculator(CeroFelizLong.class)
 	@Column(name="KAN_EJECUTORVARON",nullable=false,length=4)
 	private Long ejecutorVaron;
 
-	@Required
 	@Range(min=0)
 	@DefaultValueCalculator(CeroFelizLong.class)
 	@Column(name="KAN_EJECUTORMUJER",nullable=false,length=4)
 	private Long ejecutorMujer;
 
-	@Required
+
 	@Range(min=0)
 	@DefaultValueCalculator(CeroFelizLong.class)
 	@Column(name="KAN_QINSTITUCIONES",nullable=false,length=4)
 	private Long cantidadInstitucionesBeneficiadas;
 
-	@Required
 	@Range(min=0)
 	@DefaultValueCalculator(CeroFelizLong.class)
 	@Column(name="KAN_QBENEFICIARIOSVARON",nullable=false,length=4)
 	private Long cantidadBeneficiariosVaron;
 
-	@Required
 	@Range(min=0)
 	@DefaultValueCalculator(CeroFelizLong.class)
 	@Column(name="KAN_QBENEFICIARIOSMUJER",nullable=false,length=4)
 	private Long cantidadBeneficiariosMujer;
 
-	@Column(length=60,nullable=true,name="KAN_TAREA")
+	@Stereotype("MEMO")
+	@Column(length=500,nullable=true,name="KAN_OBSERVACION")
 	private String observacion;
 	
 
-	public Pasantias getCabecero() {
+	public InformesMensuales getCabecero() {
 		return cabecero;
 	}
 
 
-	public void setCabecero(Pasantias cabecero) {
+	public void setCabecero(InformesMensuales cabecero) {
 		this.cabecero = cabecero;
 	}
 
@@ -123,7 +105,18 @@ public class InformeCuantitativo extends SuperClaseFeliz {
 
 
 	public void setTarea(String tarea) {
-		this.tarea = tarea;
+		this.tarea = tarea.toUpperCase().trim();
+	}
+
+
+	
+	public String getOrganizador() {
+		return organizador;
+	}
+
+
+	public void setOrganizador(String organizador) {
+		this.organizador = organizador;
 	}
 
 
@@ -144,36 +137,6 @@ public class InformeCuantitativo extends SuperClaseFeliz {
 
 	public void setLugar(LugaresDeAtencion lugar) {
 		this.lugar = lugar;
-	}
-
-
-	public Orientadores getOrganizador() {
-		return organizador;
-	}
-
-
-	public void setOrganizador(Orientadores organizador) {
-		this.organizador = organizador;
-	}
-
-
-	public Anomes getYyyymm() {
-		return yyyymm;
-	}
-
-
-	public void setYyyymm(Anomes yyyymm) {
-		this.yyyymm = yyyymm;
-	}
-
-
-	public Date getFecha() {
-		return fecha;
-	}
-
-
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
 	}
 
 
@@ -236,21 +199,11 @@ public class InformeCuantitativo extends SuperClaseFeliz {
 		this.observacion = observacion;
 	}
 
-
-	private void camposCalculados() {
-		this.yyyymm.obtenerAnoMes(this.getFecha());
-	}
 	
-	
-	@PrePersist
-	private void antesDeGrabar() {
-		this.camposCalculados();
-	}
 	
 	
 	@PreUpdate
-	private void ultimoPaso() {
-		this.camposCalculados();		
+	private void ultimoPaso() {	
 			Date mifechora = new java.util.Date() ;
 			super.setModificadoPor(Users.getCurrent()) ;
 			super.setFchUltMod(mifechora)  ;
