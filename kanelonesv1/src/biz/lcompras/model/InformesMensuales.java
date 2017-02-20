@@ -51,72 +51,54 @@ public class InformesMensuales extends SuperClaseFeliz {
 	@JoinColumn(name="IDORIENTADOR_ID", referencedColumnName="ID")	
 	private Orientadores orientador;
 
+	@ListProperties("actividad.nombreActividad,tarea")
+	@OneToMany(mappedBy="cabecero",cascade=CascadeType.ALL)
+	
 	
 	public Carreras getCarrera() {
 		return carrera;
 	}
 
-
-
 	public void setCarrera(Carreras carrera) {
 		this.carrera = carrera;
 	}
-
-
 
 	public Date getFecha() {
 		return fecha;
 	}
 
-
-
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
-
-
 
 	public String getNarrativa() {
 		return narrativa;
 	}
 
-
-
 	public AtencionInforme getAttn() {
 		return attn;
 	}
-
-
 
 	public void setAttn(AtencionInforme attn) {
 		this.attn = attn;
 	}
 
-
-
 	public Anomes getYyyymm() {
 		return yyyymm;
 	}
 
-
-
 	public void setYyyymm(Anomes yyyymm) {
 		this.yyyymm = yyyymm;
 	}
-
-
 
 	public void setNarrativa(String narrativa) {
 		this.narrativa = narrativa;
 	}
 
 
-
 	public Orientadores getOrientador() {
 		return orientador;
 	}
-
-
 
 	public void setOrientador(Orientadores orientador) {
 		this.orientador = orientador;
