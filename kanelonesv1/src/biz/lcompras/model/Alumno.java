@@ -3,8 +3,6 @@ package biz.lcompras.model;
 import java.util.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
-
 import org.openxava.annotations.*;
 import org.openxava.util.*;
 
@@ -16,43 +14,28 @@ import org.openxava.util.*;
         , @UniqueConstraint(name="KAN_NOMBRE_DUPLICADO", columnNames={"KAN_NOMBREAPELLIDO"})        
  }
 )
+
 public class Alumno extends SuperClaseFeliz {
 
 @Required
-@Column(length=20,nullable=false,name="KAN_NROCEDULA")
-@Pattern(regexp="^[0-9]+$",message="No es un numero")
+@Column(length=80,nullable=false,name="KAN_NROCEDULA")		
 private String nroCedula ;
 @Required
 @Column(length=80,nullable=false,name="KAN_NOMBREAPELLIDO")
 private String nombreApellido ;
-@Embedded
-private Direcciones direccion;
 @Required
-@Column(nullable=true	,name="KAN_YYYY")
-private Long YYYY;
+@Column(length=80,nullable=false,name="KAN_NROCELULAR")
+private String nroCelular;
 @Required
 @Column(length=80,nullable=false,name="KAN_LINEABAJA")
 private String lineabaja ;
 @Required
-@Column(length=80,nullable=false,name="KAN_NROCELULAR")
-private String nroCelular;
-
+@Column(length=80,nullable=false,name="KAN_EMAIL")
+private String email ;
 
 	
 	
-public String getNroCelular() {
-	return nroCelular;
-}
-
-
-
-public void setNroCelular(String nroCelular) {
-	this.nroCelular = nroCelular;
-}
-
-
-
-public String getNroCedula() {
+	public String getNroCedula() {
 	return nroCedula;
 }
 
@@ -69,33 +52,24 @@ public String getNombreApellido() {
 }
 
 
+
 public void setNombreApellido(String nombreApellido) {
 	this.nombreApellido = nombreApellido.toUpperCase().trim();
 }
 
 
 
-	public Direcciones getDireccion() {
-	return direccion;
+public String getNroCelular() {
+	return nroCelular;
 }
 
 
 
-public void setDireccion(Direcciones direccion) {
-	this.direccion = direccion;
+public void setNroCelular(String nroCelular) {
+	this.nroCelular = nroCelular.toUpperCase().trim();
 }
 
 
-
-	public Long getYYYY() {
-	return YYYY;
-}
-
-
-
-public void setYYYY(Long yYYY) {
-	YYYY = yYYY;
-}
 
 public String getLineabaja() {
 	return lineabaja;
@@ -104,10 +78,20 @@ public String getLineabaja() {
 
 
 public void setLineabaja(String lineabaja) {
-	this.lineabaja = lineabaja;
+	this.lineabaja = lineabaja.toUpperCase().trim();
 }
 
 
+
+public String getEmail() {
+	return email;
+}
+
+
+
+public void setEmail(String email) {
+	this.email = email.toUpperCase().trim();
+}
 
 	@PreUpdate
 	private void ultimoPaso() {
