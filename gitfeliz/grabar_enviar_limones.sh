@@ -4,9 +4,9 @@
 # cp /home/xoldfusion/Descargas/openxava-5.6_kanelones/workspace.dist/kanelonesv1.dist/*.war  /home/xoldfusion/Descargas/kanelones2017/amazon2017llave/
 # cp -r /home/xoldfusion/Descargas/openxava-5.6_kanelones/workspace/kanelonesv1  kanelones
 
-cp /home/xoldfusion/Descargas/openxava-5.6_kanelones/workspace/Servers/Tomcat v7.0 Server at localhost-config/server.xml  /home/xoldfusion/Descargas/openxava-5.6_kanelones/tomcat/conf/
-cp /home/xoldfusion/Descargas/openxava-5.6_kanelones/workspace/Servers/Tomcat v7.0 Server at localhost-config/context.xml /home/xoldfusion/Descargas/openxava-5.6_kanelones/tomcat/conf/
-cp /home/xoldfusion/Descargas/openxava-5.6_kanelones/workspace/Servers/Tomcat v7.0 Server at localhost-config/web.xml /home/xoldfusion/Descargas/openxava-5.6_kanelones/tomcat/conf/
+cp "/home/xoldfusion/Descargas/openxava-5.6_kanelones/workspace/Servers/Tomcat v7.0 Server at localhost-config/server.xml"  /home/xoldfusion/Descargas/openxava-5.6_kanelones/tomcat/conf/
+cp "/home/xoldfusion/Descargas/openxava-5.6_kanelones/workspace/Servers/Tomcat v7.0 Server at localhost-config/context.xml" /home/xoldfusion/Descargas/openxava-5.6_kanelones/tomcat/conf/
+cp "/home/xoldfusion/Descargas/openxava-5.6_kanelones/workspace/Servers/Tomcat v7.0 Server at localhost-config/web.xml" /home/xoldfusion/Descargas/openxava-5.6_kanelones/tomcat/conf/
 cp /home/xoldfusion/Descargas/openxava-5.6_kanelones/tomcat/conf/server.xml /home/xoldfusion/Descargas/kanelones2017/tomcatfeliz
 cp /home/xoldfusion/Descargas/openxava-5.6_kanelones/tomcat/conf/context.xml /home/xoldfusion/Descargas/kanelones2017/tomcatfeliz
 cp /home/xoldfusion/Descargas/openxava-5.6_kanelones/tomcat/conf/web.xml /home/xoldfusion/Descargas/kanelones2017/tomcatfeliz

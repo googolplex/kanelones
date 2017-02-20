@@ -32,5 +32,6 @@
      
     <ResourceLink global="jdbc/kanelonesv1" 
     	name="jdbc/kanelonesv1" 
-    	type="javax.sql.DataSource"/>
+    	type="javax.sql.DataSource"/>            
+    
 </Context>
