@@ -2,7 +2,7 @@
 # hecho para portatil HPO ENVY
 # el 2017/02
 # cp /home/xoldfusion/Downloads/openxava-5.6_kanelones/workspace.dist/kanelonesv1.dist/*.war  /home/xoldfusion/Downloads/kanelones2017/amazon2017llave/
-rm /home/xoldfusion/Downloads/kanelones2017/kanelones/kanelonesv1/*
+rm -R /home/xoldfusion/Downloads/kanelones2017/kanelones/kanelonesv1/
 cp -r /home/xoldfusion/Downloads/openxava-5.6_kanelones/workspace/kanelonesv1  kanelones
 
 cp "/home/xoldfusion/Downloads/openxava-5.6_kanelones/workspace/Servers/Tomcat v7.0 Server at localhost-config/server.xml"  /home/xoldfusion/Downloads/openxava-5.6_kanelones/tomcat/conf/
