@@ -23,5 +23,5 @@ rm *.*~
 rm kanelones/*.*~
 cd kanelones
 git add -A
-git commit -a -m "ya se puede cargar situacion y relatorio"
+git commit -a -m "permito mas flexibilidad al cargar situacion"
 git push -u origin master

@@ -11,7 +11,7 @@ import org.openxava.util.*;
 @Entity
 @Table(name="KAN_SITUACIONPASANTIA"
  , uniqueConstraints={
-		 @UniqueConstraint(name="KAN_SITUACION_DUPLICADA", columnNames={"KAN_FECHASITUACION","IDESTADO_ID"})        
+		 @UniqueConstraint(name="KAN_SITUACION_DUPLICADA", columnNames={"IDPASANTIAS1_ID","KAN_FECHASITUACION","IDESTADO_ID"})        
  }
 )
 @Tab(properties="cabecero1.yyyy,cabecero1.alumno.nroCedula,cabecero1.alumno.nombreApellido,cabecero1.fechaInicio,fechaSituacion,cabecero1.empresa.nombreEmpresa,estado.nombreEstado")
