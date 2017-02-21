@@ -34,7 +34,7 @@ private Direcciones direccion;
 @Required
 @Column(nullable=true	,name="KAN_YYYY")
 @DefaultValueCalculator(CurrentYearCalculator.class)
-private Long YYYY;
+private Long yyyy;
 
 	
 	
@@ -73,14 +73,14 @@ public void setDireccion(Direcciones direccion) {
 
 
 
-	public Long getYYYY() {
-	return YYYY;
+	public Long getYyyy() {
+	return yyyy;
 }
 
 
 
-public void setYYYY(Long yYYY) {
-	YYYY = yYYY;
+public void setYyyy(Long yyyy) {
+	this.yyyy = yyyy;
 }
 
 
