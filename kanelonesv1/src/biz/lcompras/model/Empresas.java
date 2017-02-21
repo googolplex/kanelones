@@ -32,7 +32,6 @@ public void setNombreEmpresa(String nombreEmpresa) {
 }
 
 
-
 public Direcciones getDireccion() {
 	return direccion;
 }

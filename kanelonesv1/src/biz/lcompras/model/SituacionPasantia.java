@@ -38,6 +38,18 @@ public class SituacionPasantia extends SuperClaseFeliz {
 	
 
 
+	public Anomes getYyyymm() {
+		return yyyymm;
+	}
+
+
+
+	public void setYyyymm(Anomes yyyymm) {
+		this.yyyymm = yyyymm;
+	}
+
+
+
 	public Pasantias getCabecero1() {
 		return cabecero1;
 	}
@@ -73,6 +85,7 @@ public class SituacionPasantia extends SuperClaseFeliz {
 	}
 
 	private void camposCalculados() {
+		System.out.println("chaufecha  " + this.getFechaSituacion().toString());
 		this.yyyymm.obtenerAnoMes(this.getFechaSituacion());
 	}
 	

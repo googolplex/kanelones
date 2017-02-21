@@ -86,6 +86,14 @@ public class RelatoriosAlumno extends SuperClaseFeliz  {
 
 
 
+	public Anomes getYyyymm() {
+		return yyyymm;
+	}
+
+	public void setYyyymm(Anomes yyyymm) {
+		this.yyyymm = yyyymm;
+	}
+
 	public void setComentario(String comentario) {
 		this.comentario = comentario.toUpperCase().trim();
 	}

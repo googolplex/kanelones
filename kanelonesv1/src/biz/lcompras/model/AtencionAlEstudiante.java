@@ -11,7 +11,7 @@ import org.openxava.util.*;
 @Entity
 @Table(name="KAN_ATENCIONALESTUDIANTE"
  , uniqueConstraints={
-     @UniqueConstraint(name="KAN_ATENCION_DUPLICADA", columnNames={"KAN_FECHAATENCION","IDALUMNO_ID"})        
+     @UniqueConstraint(name="KAN_ATENCION_DUPLICADA", columnNames={"KAN_FECHAATENCION","IDALUMNO_ID","IDMATERIA_ID"})        
  }
 )
 public class AtencionAlEstudiante extends SuperClaseFeliz {
@@ -22,7 +22,12 @@ public class AtencionAlEstudiante extends SuperClaseFeliz {
 	@DefaultValueCalculator(CurrentDateCalculator.class)	
 	private Date fechaAtencion ;
 
-	
+	@Required
+	@DescriptionsList(descriptionProperties="nombreMateria")
+	@ManyToOne(fetch=FetchType.LAZY,optional=false)	
+	@JoinColumn(name="IDMATERIA_ID", referencedColumnName="ID")	
+	private Materias materia ;
+		
 	@Required
 	@DescriptionsList(descriptionProperties="nombreApellido")
 	@ManyToOne(fetch=FetchType.LAZY,optional=false)	
@@ -36,6 +41,9 @@ public class AtencionAlEstudiante extends SuperClaseFeliz {
 	@JoinColumn(name="IDLUGAR_ID", referencedColumnName="ID")	
 	private LugaresDeAtencion ellugar ;
 
+	@Stereotype("MEMO")
+	@Column(length=200,name="ATE_DETALLESDEATENCION",nullable=true)
+	private String detallesDeAtencion;
 	
 	@Required
 	@Stereotype("TIME")
@@ -48,6 +56,16 @@ public class AtencionAlEstudiante extends SuperClaseFeliz {
 
 	public void setFechaAtencion(Date fechaAtencion) {
 		this.fechaAtencion = fechaAtencion;
+	}
+
+
+	
+	public Materias getMateria() {
+		return materia;
+	}
+
+	public void setMateria(Materias materia) {
+		this.materia = materia;
 	}
 
 	public Alumnos getAlumno() {
@@ -68,6 +86,16 @@ public class AtencionAlEstudiante extends SuperClaseFeliz {
 
 	public void setEllugar(LugaresDeAtencion ellugar) {
 		this.ellugar = ellugar;
+	}
+
+
+	
+	public String getDetallesDeAtencion() {
+		return detallesDeAtencion;
+	}
+
+	public void setDetallesDeAtencion(String detallesDeAtencion) {
+		this.detallesDeAtencion = detallesDeAtencion;
 	}
 
 	public String getHhmm() {
