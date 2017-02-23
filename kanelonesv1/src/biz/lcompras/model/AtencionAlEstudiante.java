@@ -14,6 +14,7 @@ import org.openxava.util.*;
      @UniqueConstraint(name="KAN_ATENCION_DUPLICADA", columnNames={"KAN_FECHAATENCION","IDALUMNO_ID","IDMATERIA_ID"})        
  }
 )
+@Tab(properties="alumno.nombreApellido,orientador.nombreOrientador,fechaAtencion,materia.nombreMateria,ellugar.lugar,hhmm")
 public class AtencionAlEstudiante extends SuperClaseFeliz {
 
 	@Required

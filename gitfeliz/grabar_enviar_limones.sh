@@ -22,5 +22,5 @@ rm *.*~
 rm kanelones/*.*~
 cd kanelones
 git add -A
-git commit -a -m "agrego una columna a atencionalestudiante"
+git commit -a -m "agrego columnas a la consulta atencion al estudiante"
 git push -u origin master
