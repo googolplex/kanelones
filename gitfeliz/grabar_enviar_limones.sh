@@ -22,5 +22,5 @@ rm *.*~
 rm kanelones/*.*~
 cd kanelones
 git add -A
-git commit -a -m "para que funcione la grabacion del periodo en alumnos"
+git commit -a -m "agrego una columna a atencionalestudiante"
 git push -u origin master

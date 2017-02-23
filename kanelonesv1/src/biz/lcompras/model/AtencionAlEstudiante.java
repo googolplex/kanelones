@@ -16,6 +16,12 @@ import org.openxava.util.*;
 )
 public class AtencionAlEstudiante extends SuperClaseFeliz {
 
+	//@Required
+	@DescriptionsList(descriptionProperties="nombreOrientador")
+	@ManyToOne(fetch=FetchType.LAZY,optional=false)	
+	@JoinColumn(name="IDORIENTADOR_ID", referencedColumnName="ID")	
+	private Orientadores orientador;	
+	
 	@Required
 	@Stereotype("DATE")
 	@Column(nullable=false,name="KAN_FECHAATENCION")
@@ -50,6 +56,17 @@ public class AtencionAlEstudiante extends SuperClaseFeliz {
 	@Column(length=20,nullable=false,name="KAN_HHMM")
 	private String hhmm;
 			
+
+	
+	
+	public Orientadores getOrientador() {
+		return orientador;
+	}
+
+	public void setOrientador(Orientadores orientador) {
+		this.orientador = orientador;
+	}
+
 	public Date getFechaAtencion() {
 		return fechaAtencion;
 	}
