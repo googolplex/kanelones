@@ -16,7 +16,7 @@ import org.openxava.util.*;
 )
 public class AtencionAlEstudiante extends SuperClaseFeliz {
 
-	//@Required
+	@Required
 	@DescriptionsList(descriptionProperties="nombreOrientador")
 	@ManyToOne(fetch=FetchType.LAZY,optional=false)	
 	@JoinColumn(name="IDORIENTADOR_ID", referencedColumnName="ID")	
