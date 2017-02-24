@@ -22,5 +22,5 @@ rm *.*~
 rm kanelones/*.*~
 cd kanelones
 git add -A
-git commit -a -m "informes y agrando columna en relatorio"
+git commit -a -m "ya presente el informe mensual de pasantias"
 git push -u origin master
