@@ -41,7 +41,7 @@ public class RelatoriosAlumno extends SuperClaseFeliz  {
 	private Double horasAcumuladas;
 	
 	@Stereotype("MEMO")
-	@Column(length=500,nullable=false,name="KAN_COMENTARIO")
+	@Column(length=1000,nullable=false,name="KAN_COMENTARIO")
 	private String comentario;
 	
 
