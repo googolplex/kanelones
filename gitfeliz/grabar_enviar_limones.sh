@@ -21,6 +21,7 @@ cp  amazon2017llave/*.sh kanelones/amazon2017llave/
 rm *.*~
 rm kanelones/*.*~
 rm jasperfeliz/*.*~
+rm jasperfeliz/*.jasper
 cd kanelones
 git add -A
 git commit -a -m "ya presente el informe mensual de pasantias"
