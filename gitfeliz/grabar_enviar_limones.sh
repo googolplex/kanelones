@@ -20,6 +20,7 @@ cp  amazon2017llave/*.sh kanelones/amazon2017llave/
 # cp  amazon2017llave/*.war kanelones/amazon2017llave/ ### no llevo el war porque no es necesario
 rm *.*~
 rm kanelones/*.*~
+rm jasperfeliz/*.*~
 cd kanelones
 git add -A
 git commit -a -m "ya presente el informe mensual de pasantias"
