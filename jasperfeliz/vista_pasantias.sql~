@@ -1,9 +1,0 @@
-create view vista_pasantias as 
-select j.kan_nombreapellido, kan_nrocedula, g.kan_nombreempresa, to_char(k.kan_fechainicio,'YYYY/MM/DD') as fechainicio
-, xx.estado, xx.fechasituacion
-, nn.horasacumuladas as horasacumuladas
-from kan_pasantias k 
-left join kan_alumno j on k.idalumno_id = j.id
-left join kan_empresa g on k.idempresa_id = g.id
-left join vista_ultimasituacion xx on k.id = xx.idpasantias1_id
-left join vista_horasacumuladas nn on k.id = nn.idpasantias2_id
