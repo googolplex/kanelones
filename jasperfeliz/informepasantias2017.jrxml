@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="informepasantias2017" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="informepasantias2017" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="41"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
@@ -26,67 +26,71 @@ order by orientador, estado desc]]>
 	<field name="estado" class="java.lang.String"/>
 	<field name="fechasituacion" class="java.lang.String"/>
 	<field name="horasacumuladas" class="java.lang.Double"/>
-	<group name="orientador" isStartNewPage="true">
+	<group name="orientador" isStartNewPage="true" isReprintHeaderOnEachPage="true">
 		<groupExpression><![CDATA[$F{orientador}]]></groupExpression>
 		<groupHeader>
 			<band height="24">
 				<textField>
-					<reportElement style="SubTitle" x="343" y="-28" width="419" height="24" forecolor="#736343"/>
+					<reportElement style="SubTitle" x="328" y="0" width="419" height="24" forecolor="#736343"/>
 					<textElement>
 						<font size="14" isBold="true"/>
 					</textElement>
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{orientador}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement style="Column header" x="234" y="-28" width="98" height="24" forecolor="#736343"/>
+					<reportElement style="Column header" x="217" y="0" width="98" height="24" forecolor="#736343"/>
 					<textElement/>
 					<text><![CDATA[Orientador]]></text>
 				</staticText>
-				<staticText>
-					<reportElement style="Column header" x="3" y="3" width="195" height="15" forecolor="#736343"/>
-					<textElement/>
-					<text><![CDATA[Alumno]]></text>
-				</staticText>
-				<staticText>
-					<reportElement style="Column header" x="196" y="3" width="43" height="15" forecolor="#736343"/>
-					<textElement/>
-					<text><![CDATA[CI]]></text>
-				</staticText>
-				<staticText>
-					<reportElement style="Column header" x="239" y="3" width="222" height="15" forecolor="#736343"/>
-					<textElement/>
-					<text><![CDATA[Empresa]]></text>
-				</staticText>
-				<staticText>
-					<reportElement style="Column header" x="461" y="3" width="66" height="15" forecolor="#736343"/>
-					<textElement/>
-					<text><![CDATA[Inicio]]></text>
-				</staticText>
-				<staticText>
-					<reportElement style="Column header" x="530" y="3" width="133" height="15" forecolor="#736343"/>
-					<textElement/>
-					<text><![CDATA[Fin]]></text>
-				</staticText>
-				<staticText>
-					<reportElement style="Column header" x="663" y="3" width="48" height="15" forecolor="#736343"/>
-					<textElement/>
-					<text><![CDATA[horas]]></text>
-				</staticText>
-				<line>
-					<reportElement positionType="FixRelativeToBottom" x="0" y="23" width="802" height="1"/>
-					<graphicElement>
-						<pen lineWidth="0.5" lineColor="#999999"/>
-					</graphicElement>
-				</line>
 			</band>
 		</groupHeader>
 	</group>
-	<group name="estado">
+	<group name="estado" isReprintHeaderOnEachPage="true">
 		<groupExpression><![CDATA[$F{estado}]]></groupExpression>
 		<groupHeader>
-			<band height="37">
+			<band height="45">
+				<elementGroup>
+					<staticText>
+						<reportElement style="Column header" x="660" y="3" width="48" height="15" forecolor="#736343">
+							<printWhenExpression><![CDATA["CONCLUIDA".equals($F{estado})]]></printWhenExpression>
+						</reportElement>
+						<textElement/>
+						<text><![CDATA[horas]]></text>
+					</staticText>
+					<staticText>
+						<reportElement style="Column header" x="532" y="3" width="128" height="15" forecolor="#736343"/>
+						<textElement/>
+						<text><![CDATA[Fin]]></text>
+					</staticText>
+					<staticText>
+						<reportElement style="Column header" x="239" y="3" width="222" height="15" forecolor="#736343"/>
+						<textElement/>
+						<text><![CDATA[Empresa]]></text>
+					</staticText>
+					<staticText>
+						<reportElement style="Column header" x="461" y="3" width="71" height="15" forecolor="#736343"/>
+						<textElement/>
+						<text><![CDATA[Inicio]]></text>
+					</staticText>
+					<line>
+						<reportElement positionType="FixRelativeToBottom" x="0" y="23" width="802" height="1"/>
+						<graphicElement>
+							<pen lineWidth="0.5" lineColor="#999999"/>
+						</graphicElement>
+					</line>
+					<staticText>
+						<reportElement style="Column header" x="3" y="3" width="195" height="15" forecolor="#736343"/>
+						<textElement/>
+						<text><![CDATA[Alumno]]></text>
+					</staticText>
+					<staticText>
+						<reportElement style="Column header" x="196" y="3" width="43" height="15" forecolor="#736343"/>
+						<textElement/>
+						<text><![CDATA[CI]]></text>
+					</staticText>
+				</elementGroup>
 				<frame>
-					<reportElement mode="Opaque" x="-21" y="7" width="843" height="24" forecolor="#B89F7D" backcolor="#F2EBDF"/>
+					<reportElement mode="Opaque" x="-21" y="18" width="843" height="24" forecolor="#B89F7D" backcolor="#F2EBDF"/>
 					<rectangle>
 						<reportElement mode="Opaque" x="21" y="0" width="36" height="24" backcolor="#736343"/>
 						<graphicElement>
@@ -95,7 +99,7 @@ order by orientador, estado desc]]>
 					</rectangle>
 					<textField>
 						<reportElement style="SubTitle" x="126" y="0" width="223" height="24" forecolor="#736343"/>
-						<textElement>
+						<textElement verticalAlignment="Middle">
 							<font size="14" isBold="true"/>
 						</textElement>
 						<textFieldExpression class="java.lang.String"><![CDATA[$F{estado}]]></textFieldExpression>
@@ -114,7 +118,7 @@ order by orientador, estado desc]]>
 		<band splitType="Stretch"/>
 	</title>
 	<pageHeader>
-		<band height="97" splitType="Stretch">
+		<band height="68" splitType="Stretch">
 			<staticText>
 				<reportElement style="Title" x="229" y="0" width="395" height="62"/>
 				<textElement verticalAlignment="Middle">
@@ -153,21 +157,23 @@ order by orientador, estado desc]]>
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{kan_nombreempresa}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" x="463" y="0" width="66" height="15"/>
+					<reportElement style="Detail" x="463" y="0" width="69" height="15"/>
 					<textElement>
 						<font size="8"/>
 					</textElement>
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{fechainicio}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" x="532" y="0" width="133" height="15"/>
+					<reportElement style="Detail" x="532" y="0" width="128" height="15"/>
 					<textElement>
 						<font size="8"/>
 					</textElement>
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{fechasituacion}]]></textFieldExpression>
 				</textField>
-				<textField isStretchWithOverflow="true" pattern="#,##0">
-					<reportElement style="Detail" x="665" y="0" width="48" height="15"/>
+				<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
+					<reportElement style="Detail" x="660" y="0" width="137" height="15">
+						<printWhenExpression><![CDATA["CONCLUIDA".equals($F{estado})]]></printWhenExpression>
+					</reportElement>
 					<textElement>
 						<font size="8"/>
 					</textElement>

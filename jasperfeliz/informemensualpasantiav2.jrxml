@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="informemensualpasantia" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="informemensualpasantia" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -33,6 +33,30 @@ where kan_yyyymm = 201702]]>
 	<field name="lugar" class="java.lang.String"/>
 	<field name="actividad" class="java.lang.String"/>
 	<field name="cantidad" class="java.lang.Long"/>
+	<variable name="cantidad" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{cantidad}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="ejecutorVaron" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{ejecutorvaron}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="ejecutorMujer" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{ejecutormujer}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="beneficiarioMujer" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{beneficiariosmujer}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="beneficiarioVaron" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{beneficiariosvaron}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="cantidadInstituciones" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{qinstituciones}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
 	<group name="orientador">
 		<groupExpression><![CDATA[$F{kan_nombreorientador}]]></groupExpression>
 		<groupHeader>
@@ -55,7 +79,7 @@ where kan_yyyymm = 201702]]>
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{kan_narrativa}]]></textFieldExpression>
 				</textField>
 				<line>
-					<reportElement positionType="FixRelativeToBottom" x="3" y="84" width="544" height="1"/>
+					<reportElement positionType="FixRelativeToBottom" x="0" y="84" width="555" height="1"/>
 					<graphicElement>
 						<pen lineWidth="0.5" lineColor="#999999"/>
 					</graphicElement>
@@ -93,37 +117,92 @@ where kan_yyyymm = 201702]]>
 			</band>
 		</groupHeader>
 		<groupFooter>
-			<band height="50">
+			<band height="57">
 				<staticText>
-					<reportElement style="Column header" x="208" y="10" width="107" height="15" forecolor="#736343"/>
+					<reportElement style="Column header" x="383" y="25" width="107" height="15" forecolor="#736343"/>
 					<textElement/>
 					<text><![CDATA[EM-EjecutorMujer]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="Column header" x="383" y="25" width="145" height="15" forecolor="#736343"/>
+					<reportElement style="Column header" x="383" y="40" width="145" height="15" forecolor="#736343"/>
 					<textElement/>
 					<text><![CDATA[BV-benef.Varon]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="Column header" x="93" y="10" width="105" height="15" forecolor="#736343"/>
+					<reportElement style="Column header" x="208" y="25" width="105" height="15" forecolor="#736343"/>
 					<textElement/>
 					<text><![CDATA[EV-EjecutorVaron]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="Column header" x="208" y="25" width="142" height="15" forecolor="#736343"/>
+					<reportElement style="Column header" x="208" y="40" width="142" height="15" forecolor="#736343"/>
 					<textElement/>
 					<text><![CDATA[BM-benef.mujer]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="Column header" x="11" y="25" width="149" height="15" forecolor="#736343"/>
+					<reportElement style="Column header" x="11" y="40" width="149" height="15" forecolor="#736343"/>
 					<textElement/>
 					<text><![CDATA[QI-cantidadInstituciones]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="Column header" x="10" y="10" width="69" height="15" forecolor="#736343"/>
+					<reportElement style="Column header" x="11" y="25" width="69" height="15" forecolor="#736343"/>
 					<textElement/>
 					<text><![CDATA[Q-cantidad]]></text>
 				</staticText>
+				<textField evaluationTime="Report">
+					<reportElement x="315" y="3" width="30" height="15"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Integer"><![CDATA[$V{cantidad}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Column header" x="160" y="3" width="69" height="15" forecolor="#736343"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[Totales]]></text>
+				</staticText>
+				<line>
+					<reportElement positionType="FixRelativeToBottom" x="0" y="0" width="555" height="1"/>
+					<graphicElement>
+						<pen lineWidth="0.5" lineColor="#999999"/>
+					</graphicElement>
+				</line>
+				<textField>
+					<reportElement x="350" y="3" width="22" height="15"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Integer"><![CDATA[$V{ejecutorVaron}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="380" y="3" width="22" height="15"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Integer"><![CDATA[$V{ejecutorMujer}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="405" y="3" width="22" height="15"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Integer"><![CDATA[$V{cantidadInstituciones}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="432" y="3" width="22" height="15"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Integer"><![CDATA[$V{beneficiarioMujer}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="471" y="3" width="22" height="15"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Integer"><![CDATA[$V{beneficiarioVaron}]]></textFieldExpression>
+				</textField>
 			</band>
 		</groupFooter>
 	</group>
@@ -212,7 +291,7 @@ where kan_yyyymm = 201702]]>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="18" splitType="Stretch">
+		<band height="16" splitType="Stretch">
 			<frame>
 				<reportElement style="Row" stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="555" height="16"/>
 				<textField>
