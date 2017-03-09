@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<b:beans xmlns="http://www.springframework.org/schema/security" xmlns:b="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+	<http>
+		<intercept-url pattern="/index.jsp" access="permitAll" />
+		<intercept-url pattern="/login.jsp" access="permitAll" /> 
+
+		<intercept-url pattern="/m/Actividades" access="hasAuthority('Actividades') or hasAuthority('root')" />
+		<intercept-url pattern="/m/Alumnos" access="hasAuthority('Alumnos') or hasAuthority('root')" />
+		<intercept-url pattern="/m/Anomes" access="hasAuthority('Anomes') or hasAuthority('root')" />
+		<intercept-url pattern="/m/AreaPasantia" access="hasAuthority('AreaPasantia') or hasAuthority('root')" />
+		<intercept-url pattern="/m/AtencionAlEstudiante" access="hasAuthority('AtencionAlEstudiante') or hasAuthority('root')" />
+		<intercept-url pattern="/m/AtencionInforme" access="hasAuthority('AtencionInforme') or hasAuthority('root')" />
+		<intercept-url pattern="/m/Authority" access="hasAuthority('Authority') or hasAuthority('root')" />
+		<intercept-url pattern="/m/Cargos" access="hasAuthority('Cargos') or hasAuthority('root')" />
+		<intercept-url pattern="/m/Carreras" access="hasAuthority('Carreras') or hasAuthority('root')" />
+		<intercept-url pattern="/m/Ciudades" access="hasAuthority('Ciudades') or hasAuthority('root')" />
+		<intercept-url pattern="/m/Contactos" access="hasAuthority('Contactos') or hasAuthority('root')" />
+		<intercept-url pattern="/m/Direcciones" access="hasAuthority('Direcciones') or hasAuthority('root')" />
+		<intercept-url pattern="/m/Directivos" access="hasAuthority('Directivos') or hasAuthority('root')" />
+		<intercept-url pattern="/m/Empresas" access="hasAuthority('Empresas') or hasAuthority('root')" />
+		<intercept-url pattern="/m/EstadosPasantia" access="hasAuthority('EstadosPasantia') or hasAuthority('root')" />
+		<intercept-url pattern="/m/InformeCuantitativo" access="hasAuthority('InformeCuantitativo') or hasAuthority('root')" />
+		<intercept-url pattern="/m/InformesMensuales" access="hasAuthority('InformesMensuales') or hasAuthority('root')" />
+		<intercept-url pattern="/m/LugaresDeAtencion" access="hasAuthority('LugaresDeAtencion') or hasAuthority('root')" />
+		<intercept-url pattern="/m/Materias" access="hasAuthority('Materias') or hasAuthority('root')" />
+		<intercept-url pattern="/m/Orientadores" access="hasAuthority('Orientadores') or hasAuthority('root')" />
+		<intercept-url pattern="/m/Pasantias" access="hasAuthority('Pasantias') or hasAuthority('root')" />
+		<intercept-url pattern="/m/RelatoriosAlumno" access="hasAuthority('RelatoriosAlumno') or hasAuthority('root')" />
+		<intercept-url pattern="/m/Role" access="hasAuthority('Role') or hasAuthority('root')" />
+		<intercept-url pattern="/m/RoleAuthority" access="hasAuthority('RoleAuthority') or hasAuthority('root')" />
+		<intercept-url pattern="/m/SituacionPasantia" access="hasAuthority('SituacionPasantia') or hasAuthority('root')" />
+		<intercept-url pattern="/m/UserInfo" access="hasAuthority('UserInfo') or hasAuthority('root')" />
+		<intercept-url pattern="/m/UserRole" access="hasAuthority('UserRole') or hasAuthority('root')" />
+
+		<csrf disabled="true" />
+
+		<form-login login-page="/login.jsp" authentication-failure-url="/login.jsp?login_error=1" username-parameter="username"
+			password-parameter="password" />
+		<http-basic />
+		<logout logout-url="/logout" logout-success-url="/index.jsp" />
+		<!-- <remember-me /> -->
+		<access-denied-handler error-page="/accessDenied.jsp" />
+	</http>
+
+	<authentication-manager>
+		<authentication-provider>
+<!-- 			<password-encoder hash="md5" /> -->
+			<jdbc-user-service data-source-ref="dataSource" users-by-username-query="SELECT username,password,active AS enabled FROM userinfo WHERE username = ?"
+				authorities-by-username-query="SELECT username, authority FROM userrole r JOIN userinfo u ON r.userinfo_id = u.id JOIN roleauthority ra ON r.id = ra.role_id JOIN authority a ON ra.authority_id = a.id WHERE u.username = ?" />
+		</authentication-provider>
+	</authentication-manager>
+
+	<b:bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<b:property name="jndiName">
+			<b:value>java://comp/env/jdbc/kanelonesv1</b:value>
+		</b:property>
+
+	</b:bean>
+
+</b:beans>

@@ -8,6 +8,8 @@ import org.hibernate.annotations.*;
 import org.openxava.annotations.*;
 import org.openxava.calculators.*;
 import org.openxava.util.*;
+import org.springframework.security.core.*;
+import org.springframework.security.core.context.*;
 
 
 // version con UUID
@@ -39,7 +41,7 @@ public class SuperClaseFeliz {
 	@Hidden
 	@DefaultValueCalculator(CurrentUserCalculator.class)
 	@Column(length=50,name="USUARIO")	
-	private String	creadoPor = Users.getCurrent() ;
+	private String	creadoPor; //= Users.getCurrent() ;
 
 	@Hidden
 	@DefaultValueCalculator(CurrentUserCalculator.class)	
@@ -79,6 +81,12 @@ public class SuperClaseFeliz {
 	}
 
 	public String getCreadoPor() {
+		try{
+			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			return authentication.getName();
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
 		return creadoPor;
 	}
 

@@ -7,90 +7,74 @@ import javax.validation.constraints.*;
 
 import org.openxava.annotations.*;
 import org.openxava.calculators.*;
-import org.openxava.util.*;
-
+import org.springframework.security.core.*;
+import org.springframework.security.core.context.*;
 
 @Entity
-@Table(name="KAN_ALUMNO"
- , uniqueConstraints={
-        @UniqueConstraint(name="KAN_CEDULA_DUPLICADA", columnNames={"KAN_NROCEDULA"})
-        , @UniqueConstraint(name="KAN_NOMBRE_DUPLICADO", columnNames={"KAN_NOMBREAPELLIDO"})        
- }
-)
+@Table(name = "KAN_ALUMNO", uniqueConstraints = {
+		@UniqueConstraint(name = "KAN_CEDULA_DUPLICADA", columnNames = { "KAN_NROCEDULA" }),
+		@UniqueConstraint(name = "KAN_NOMBRE_DUPLICADO", columnNames = { "KAN_NOMBREAPELLIDO" }) })
 
 public class Alumnos extends SuperClaseFeliz {
 
-@Required
-@Column(length=20,nullable=false,name="KAN_NROCEDULA")
-@Pattern(regexp="^[0-9]+$",message="No es un numero")
-private String nroCedula ;
-@Required
-@Column(length=80,nullable=false,name="KAN_NOMBREAPELLIDO")
-private String nombreApellido ;
+	@Required
+	@Column(length = 20, nullable = false, name = "KAN_NROCEDULA")
+	@Pattern(regexp = "^[0-9]+$", message = "No es un numero")
+	private String nroCedula;
+	@Required
+	@Column(length = 80, nullable = false, name = "KAN_NOMBREAPELLIDO")
+	private String nombreApellido;
 
-@Embedded
-private Direcciones direccion;
+	@Embedded
+	private Direcciones direccion;
 
-@Required
-@Column(nullable=true	,name="KAN_YYYY")
-@DefaultValueCalculator(CurrentYearCalculator.class)
-private Long yyyy;
+	@Required
+	@Column(nullable = true, name = "KAN_YYYY")
+	@DefaultValueCalculator(CurrentYearCalculator.class)
+	private Long yyyy;
 
-	
-	
 	public String getNroCedula() {
-	return nroCedula;
-}
+		return nroCedula;
+	}
 
+	public void setNroCedula(String nroCedula) {
+		this.nroCedula = nroCedula.toUpperCase().trim();
+	}
 
+	public String getNombreApellido() {
+		return nombreApellido;
+	}
 
-public void setNroCedula(String nroCedula) {
-	this.nroCedula = nroCedula.toUpperCase().trim();
-}
-
-
-
-public String getNombreApellido() {
-	return nombreApellido;
-}
-
-
-public void setNombreApellido(String nombreApellido) {
-	this.nombreApellido = nombreApellido.toUpperCase().trim();
-}
-
-
+	public void setNombreApellido(String nombreApellido) {
+		this.nombreApellido = nombreApellido.toUpperCase().trim();
+	}
 
 	public Direcciones getDireccion() {
-	return direccion;
-}
+		return direccion;
+	}
 
-
-
-public void setDireccion(Direcciones direccion) {
-	this.direccion = direccion;
-}
-
-
+	public void setDireccion(Direcciones direccion) {
+		this.direccion = direccion;
+	}
 
 	public Long getYyyy() {
-	return yyyy;
-}
+		return yyyy;
+	}
 
-
-
-public void setYyyy(Long yyyy) {
-	this.yyyy = yyyy;
-}
-
-
+	public void setYyyy(Long yyyy) {
+		this.yyyy = yyyy;
+	}
 
 	@PreUpdate
 	private void ultimoPaso() {
-			Date mifechora = new java.util.Date() ;
-			super.setModificadoPor(Users.getCurrent()) ;
-			super.setFchUltMod(mifechora)  ;
-	}		
-
+		try {
+			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			Date mifechora = new java.util.Date();
+			super.setModificadoPor(authentication.getName());
+			super.setFchUltMod(mifechora);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
 
 }
