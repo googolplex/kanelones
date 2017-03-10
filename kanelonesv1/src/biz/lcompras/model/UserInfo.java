@@ -1,7 +1,6 @@
 package biz.lcompras.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
 
 import org.openxava.annotations.*;
 
@@ -24,8 +23,16 @@ public class UserInfo {
 	@Stereotype(value = "PASSWORD")
 	private String password;
 
-	@NotNull
-	private Boolean active = true;
+	@Required
+	private boolean active;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getUsername() {
 		return username;
@@ -43,11 +50,11 @@ public class UserInfo {
 		this.password = password;
 	}
 
-	public Boolean getActive() {
+	public boolean isActive() {
 		return active;
 	}
 
-	public void setActive(Boolean active) {
+	public void setActive(boolean active) {
 		this.active = active;
 	}
 

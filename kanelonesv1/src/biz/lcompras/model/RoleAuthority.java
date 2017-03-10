@@ -8,6 +8,7 @@ import org.openxava.annotations.*;
 @Table(uniqueConstraints = {
 		@UniqueConstraint(name = "role_authority_unique", columnNames = { "authority_id", "role_id" }) })
 public class RoleAuthority {
+
 	public static final String SEQUENCE = "roleauthority_id_seq";
 
 	@Hidden

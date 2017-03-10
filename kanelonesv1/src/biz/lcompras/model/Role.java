@@ -21,14 +21,6 @@ public class Role {
 
 	private String description;
 
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
 	public Long getId() {
 		return id;
 	}
@@ -43,6 +35,14 @@ public class Role {
 
 	public void setRolename(String rolename) {
 		this.rolename = rolename;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 }

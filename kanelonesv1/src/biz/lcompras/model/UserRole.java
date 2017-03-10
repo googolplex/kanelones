@@ -26,20 +26,20 @@ public class UserRole {
 
 	private String description;
 
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
 	public Long getId() {
 		return id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public UserInfo getUserInfo() {
+		return userInfo;
+	}
+
+	public void setUserInfo(UserInfo userInfo) {
+		this.userInfo = userInfo;
 	}
 
 	public Role getRole() {
@@ -50,12 +50,12 @@ public class UserRole {
 		this.role = role;
 	}
 
-	public UserInfo getUserInfo() {
-		return userInfo;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setUserInfo(UserInfo userInfo) {
-		this.userInfo = userInfo;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 }
