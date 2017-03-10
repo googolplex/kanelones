@@ -9,5 +9,21 @@
 	<classpathentry kind="src" path="i18n"/>
 	<classpathentry kind="lib" path="/OpenXava/lib/hsqldb.jar"/>
 	<classpathentry kind="lib" path="/home/xoldfusion/Descargas/openxava-5.6_kanelones/tomcat/lib/postgresql-9.4.1212.jre7.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/spring-aop-4.3.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/spring-beans-4.3.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/spring-context-4.3.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/spring-core-4.3.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/spring-expression-4.3.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/spring-jdbc-4.3.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/spring-security-acl-4.2.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/spring-security-config-4.2.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/spring-security-core-4.2.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/spring-security-core-tiger-2.0.8.RELEASE.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/spring-security-taglibs-4.2.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/spring-security-web-4.2.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/spring-tx-4.3.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/spring-web-4.3.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/urlrewritefilter-4.0.3.jar"/>
 	<classpathentry kind="output" path="web/WEB-INF/classes"/>
 </classpath>

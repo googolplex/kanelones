@@ -1,0 +1,15 @@
+- editar el archivo UserPreferences.java en el proyecto Openxava, dejar la funcion asi:
+
+private String getBaseDir() {		
+		return System.getProperty("user.home") + "/jbossews/.openxava/";
+	}
+
+
+en openshift no tengo permisos para crear una carpeta diractamente en mi home, una opcion es crearla en jbossews
+
+
+- asegurarse de compilar con jdk7
+- cambiar unpackwars="false" to unpackwars="true" in server.xml y cambiar jndi name en context.xml, para editar la configuracion se debe descargar
+el repositorio de git, la configuracion del tomcat esta en .openshift/config/
+
+- todas las librerias deben ir en el war, no hay permisos para tomcat/lib
