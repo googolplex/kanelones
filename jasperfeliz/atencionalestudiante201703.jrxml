@@ -38,11 +38,6 @@ where substring(fecha,4,7) = '03-2017']]>
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{orientador}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement style="Column header" x="3" y="26" width="29" height="15" forecolor="#736343"/>
-					<textElement/>
-					<text><![CDATA[Nro]]></text>
-				</staticText>
-				<staticText>
 					<reportElement style="Column header" x="32" y="26" width="45" height="15" forecolor="#736343"/>
 					<textElement/>
 					<text><![CDATA[Fecha]]></text>
@@ -85,7 +80,7 @@ where substring(fecha,4,7) = '03-2017']]>
 	<title>
 		<band height="42" splitType="Stretch">
 			<staticText>
-				<reportElement style="Title" x="141" y="0" width="257" height="33"/>
+				<reportElement style="Title" x="142" y="0" width="257" height="33"/>
 				<textElement verticalAlignment="Middle">
 					<font size="24" pdfFontName="Times-Roman"/>
 				</textElement>
@@ -103,13 +98,6 @@ where substring(fecha,4,7) = '03-2017']]>
 		<band height="16" splitType="Stretch">
 			<frame>
 				<reportElement style="Row" mode="Opaque" x="1" y="0" width="555" height="15"/>
-				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" x="0" y="0" width="29" height="15"/>
-					<textElement>
-						<font size="8"/>
-					</textElement>
-					<textFieldExpression class="java.lang.Long"><![CDATA[$F{q2}]]></textFieldExpression>
-				</textField>
 				<textField isStretchWithOverflow="true">
 					<reportElement style="Detail" x="29" y="0" width="45" height="15"/>
 					<textElement>

@@ -85,7 +85,7 @@ where substring(fecha,4,7) = '03-2017']]>
 	<title>
 		<band height="42" splitType="Stretch">
 			<staticText>
-				<reportElement style="Title" x="141" y="0" width="257" height="33"/>
+				<reportElement style="Title" x="142" y="0" width="257" height="33"/>
 				<textElement verticalAlignment="Middle">
 					<font size="24" pdfFontName="Times-Roman"/>
 				</textElement>
